@@ -4,34 +4,34 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:selim_trade_app/commons/theme_helper.dart';
 
 class TextStyleHelper {
-  static TextStyle f16w400 = TextStyle(
-    fontSize: 16.sp,
-    fontWeight: FontWeight.w400,
-    color: ThemeHelper.color858080,
+  static const TextStyle f25w700 = TextStyle(
+    fontSize: 25,
+    fontWeight: FontWeight.w700,
+    color: ThemeHelper.colorFCFCFC,
   );
 
-  static TextStyle f12w400 = TextStyle(
-    fontSize: 12.sp,
-    color: ThemeHelper.black,
-    fontWeight: FontWeight.w400,
+  static const TextStyle f14w600 = TextStyle(
+    fontSize: 14,
+    color: ThemeHelper.color414141,
+    fontWeight: FontWeight.w600,
   );
 
-  static TextStyle f30w500 = TextStyle(
-    fontSize: 30.sp,
-    color: ThemeHelper.black,
-    fontWeight: FontWeight.w500,
+  static const TextStyle f15w900 = TextStyle(
+    fontSize: 15,
+    color: ThemeHelper.colorF8F8F8,
+    fontWeight: FontWeight.w900,
   );
 
-  static TextStyle f13w500 = TextStyle(
-    fontSize: 13.sp,
-    fontWeight: FontWeight.w500,
-    color: ThemeHelper.black,
+  static const TextStyle f16w700 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: ThemeHelper.color414141,
   );
 
-  static TextStyle f42w500 = TextStyle(
-    fontSize: 42.sp,
-    fontWeight: FontWeight.w500,
-    color: ThemeHelper.white,
+  static const TextStyle f14w300 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w300,
+    color: ThemeHelper.color414141,
   );
 
   static TextStyle f18w500 = TextStyle(
@@ -39,32 +39,63 @@ class TextStyleHelper {
     fontWeight: FontWeight.w500,
     color: ThemeHelper.black,
   );
-  static TextStyle f24w500 = TextStyle(
-    fontSize: 24.sp,
-    fontWeight: FontWeight.w500,
-    color: ThemeHelper.black,
-  );
-
-  static TextStyle f14w500 = TextStyle(
-    fontSize: 14.sp,
-    fontWeight: FontWeight.w500,
-  );
-
-  static TextStyle f14w400 = TextStyle(
-    fontSize: 14.sp,
+  static const TextStyle f12w400 = TextStyle(
+    fontSize: 12,
     fontWeight: FontWeight.w400,
-    color: ThemeHelper.black,
+    color: ThemeHelper.color414141,
   );
 
-  static TextStyle f16w500 = TextStyle(
-    fontSize: 16.sp,
-    fontWeight: FontWeight.w500,
-    color: ThemeHelper.black,
+  static const TextStyle f10w800 = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w800,
+    color: ThemeHelper.colorF1F6FF,
   );
 
-  static TextStyle colorTransparent = TextStyle(
-    fontSize: 42.sp,
+  static const TextStyle f13w400 = TextStyle(
+    fontSize: 13,
+    fontWeight: FontWeight.w400,
+    color: ThemeHelper.color414141,
+  );
+
+  static const TextStyle f13w600 = TextStyle(
+    fontSize: 13,
+    fontWeight: FontWeight.w600,
+    color: ThemeHelper.color414141,
+  );
+
+  static const TextStyle f11w300 = TextStyle(
+    fontSize: 11,
+    fontWeight: FontWeight.w300,
+    color: ThemeHelper.color414141,
+  );
+
+  static const TextStyle f14w500 = TextStyle(
+    fontSize: 14,
     fontWeight: FontWeight.w500,
-    color: Colors.transparent,
+    color: ThemeHelper.color414141,
+  );
+
+  static const TextStyle f14w900 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w900,
+    color: ThemeHelper.colorF8F8F8,
+  );
+
+  static const TextStyle f12w500 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    color: ThemeHelper.color414141,
+  );
+
+  static const TextStyle f16w800 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w800,
+    color: ThemeHelper.colorF1F6FF,
+  );
+
+  static const TextStyle f12w600 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+    color: ThemeHelper.color001645,
   );
 }

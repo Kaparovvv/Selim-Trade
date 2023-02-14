@@ -11,45 +11,34 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i3;
-import 'package:flutter/material.dart' as _i4;
+import 'package:auto_route/auto_route.dart' as _i2;
+import 'package:flutter/material.dart' as _i3;
 
-import '../../feature/main/presentation/main_screen.dart' as _i2;
-import '../../feature/splash/splash_screen.dart' as _i1;
+import '../../feature/main/presentation/main_screen.dart' as _i1;
 
-class AppRouter extends _i3.RootStackRouter {
-  AppRouter([_i4.GlobalKey<_i4.NavigatorState>? navigatorKey])
+class AppRouter extends _i2.RootStackRouter {
+  AppRouter([_i3.GlobalKey<_i3.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i3.PageFactory> pagesMap = {
-    SplashScreenRoute.name: (routeData) {
-      return _i3.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i1.SplashScreen(),
-      );
-    },
+  final Map<String, _i2.PageFactory> pagesMap = {
     MainScreenRoute.name: (routeData) {
-      return _i3.MaterialPageX<dynamic>(
+      return _i2.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i2.MainScreen(),
+        child: const _i1.MainScreen(),
       );
-    },
+    }
   };
 
   @override
-  List<_i3.RouteConfig> get routes => [
-        _i3.RouteConfig(
+  List<_i2.RouteConfig> get routes => [
+        _i2.RouteConfig(
           '/#redirect',
           path: '/',
-          redirectTo: 'splashScreen',
+          redirectTo: 'mainScreen',
           fullMatch: true,
         ),
-        _i3.RouteConfig(
-          SplashScreenRoute.name,
-          path: 'splashScreen',
-        ),
-        _i3.RouteConfig(
+        _i2.RouteConfig(
           MainScreenRoute.name,
           path: 'mainScreen',
         ),
@@ -57,20 +46,8 @@ class AppRouter extends _i3.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.SplashScreen]
-class SplashScreenRoute extends _i3.PageRouteInfo<void> {
-  const SplashScreenRoute()
-      : super(
-          SplashScreenRoute.name,
-          path: 'splashScreen',
-        );
-
-  static const String name = 'SplashScreenRoute';
-}
-
-/// generated route for
-/// [_i2.MainScreen]
-class MainScreenRoute extends _i3.PageRouteInfo<void> {
+/// [_i1.MainScreen]
+class MainScreenRoute extends _i2.PageRouteInfo<void> {
   const MainScreenRoute()
       : super(
           MainScreenRoute.name,
