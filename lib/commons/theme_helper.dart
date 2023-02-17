@@ -15,8 +15,12 @@ class ThemeHelper {
   static const Color dividerColor = Color(0xffD9D9D9);
   static const Color colorA0D39F = Color(0xffA0D39F);
   static const Color color08B89D = Color(0xff08B89D);
+  static const Color colorFDFDFD = Color(0xffFDFDFD);
   static const Color color161623opa4 = Color.fromRGBO(22, 22, 35, 0.4);
   static const Color color161623opa3 = Color.fromRGBO(22, 22, 35, 0.36);
   static const Color color161623opa25 = Color.fromRGBO(22, 22, 35, 0.25);
   static const Color color161623opa1 = Color.fromRGBO(22, 22, 35, 0.1);
+  static Color blueGrey = Colors.blueGrey[200]!.withOpacity(0.2);
+  static const Color white20 = Color.fromRGBO(0, 0, 0, 0.2);
+  static const Color white13 = Color.fromRGBO(0, 0, 0, 0.13);
 }

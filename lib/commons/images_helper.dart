@@ -1,7 +1,6 @@
 class ImageHelper {
-  static const String background = 'assets/images/background.png';
-  static const String background1 = 'assets/images/background1.png';
-  static const String background2 = 'assets/images/background2.png';
-  static const String background3 = 'assets/images/background3.png';
-  static const String background4 = 'assets/images/background4.png';
+  static const String appBarBack = 'assets/images/appbar_back.png';
+  static const String bodyBack = 'assets/images/body_back.png';
+  static const String imageNotFound = 'assets/images/image_not_found.jpg';
+  static const String reviewsBack = 'assets/images/reviews_back.png';
 }
