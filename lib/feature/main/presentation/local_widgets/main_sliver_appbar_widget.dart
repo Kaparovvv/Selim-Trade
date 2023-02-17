@@ -17,18 +17,14 @@ class MainSliverAppBarWidget extends StatefulWidget {
 
 class _MainSliverAppBarWidgetState extends State<MainSliverAppBarWidget> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return SliverAppBar(
+      elevation: 0,
       expandedHeight: MediaQuery.of(context).size.height * 0.42,
       automaticallyImplyLeading: false,
-      backgroundColor: ThemeHelper.color001645,
+      backgroundColor: ThemeHelper.white,
       stretch: true,
       flexibleSpace: FlexibleSpaceBar(
         stretchModes: const <StretchMode>[
@@ -40,7 +36,7 @@ class _MainSliverAppBarWidgetState extends State<MainSliverAppBarWidget> {
             Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(ImageHelper.background),
+                  image: AssetImage(ImageHelper.appBarBack),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -48,8 +44,6 @@ class _MainSliverAppBarWidgetState extends State<MainSliverAppBarWidget> {
             Container(
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
                   colors: [
                     ThemeHelper.color161623opa4,
                     ThemeHelper.color161623opa3,
