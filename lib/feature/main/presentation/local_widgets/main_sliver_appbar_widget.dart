@@ -26,6 +26,7 @@ class _MainSliverAppBarWidgetState extends State<MainSliverAppBarWidget> {
       automaticallyImplyLeading: false,
       backgroundColor: ThemeHelper.white,
       stretch: true,
+      actions: const <Widget>[SizedBox()],
       flexibleSpace: FlexibleSpaceBar(
         stretchModes: const <StretchMode>[
           StretchMode.zoomBackground,

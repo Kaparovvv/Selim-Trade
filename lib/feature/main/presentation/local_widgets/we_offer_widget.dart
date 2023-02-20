@@ -5,6 +5,11 @@ import 'package:selim_trade_app/feature/main/presentation/local_widgets/scroll_b
 import '../../../../core/exports/export.dart';
 import '../../../../core/widgets/image_and_text_box_widget.dart';
 
+extension Test on BuildContext {
+  double get width => MediaQuery.of(this).size.width;
+  double get height => MediaQuery.of(this).size.height;
+}
+
 class WeOfferWidget extends StatefulWidget {
   final String? imageUrl;
   final String? description;
@@ -15,10 +20,17 @@ class WeOfferWidget extends StatefulWidget {
 }
 
 class _WeOfferWidgetState extends State<WeOfferWidget> {
+  late ScrollController _scrollController;
+
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -29,16 +41,17 @@ class _WeOfferWidgetState extends State<WeOfferWidget> {
         ),
         const SizedBox(height: 15),
         SizedBox(
-          width: width,
-          height: height * 0.21,
+          width: context.width,
+          height: context.height * 0.21,
           child: ListView.separated(
+            controller: _scrollController,
             itemCount: 10,
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.only(left: 17, right: 17),
             itemBuilder: (context, index) => ImageAndTextBoxWidget(
-              width: width * 0.69,
-              height: height * 0.21,
+              width: context.width * 0.69,
+              height: context.height * 0.21,
               imageUrl: widget.imageUrl,
               description: widget.description,
             ),
@@ -53,13 +66,24 @@ class _WeOfferWidgetState extends State<WeOfferWidget> {
             children: [
               ScrollButtonWidget(
                 icon: IconHelper.arrowLeft,
+                iconTheme: ThemeHelper.color105BFB,
                 onPressed: () {},
               ),
               CustomOutlinedButtonWidget(
                 title: TextHelper.viewAll,
+                onPressed: () {
+                  _scrollController.animateTo(
+                    0,
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.easeIn,
+                  );
+                },
+              ),
+              ScrollButtonWidget(
+                icon: IconHelper.arrowRight,
+                iconTheme: ThemeHelper.color105BFB,
                 onPressed: () {},
               ),
-              ScrollButtonWidget(icon: IconHelper.arrowRight, onPressed: () {}),
             ],
           ),
         ),

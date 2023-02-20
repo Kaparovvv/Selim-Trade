@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:selim_trade_app/core/widgets/custom_drawer_widget.dart';
+import 'package:selim_trade_app/core/widgets/footer_widgets/footer_widget.dart';
 
 import '../../../core/exports/export.dart';
 import 'local_widgets/body_widgets.dart';
@@ -26,42 +28,22 @@ class _MainScreenState extends State<MainScreen> {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: TopPanelWidget().topPanelWidget(width, height, () {}),
+      endDrawer: CustomDrawerWidget(
+        width: width,
+        height: height,
+        phone: '+996 (552) 57 07 55',
+      ),
+      appBar: TopPanelWidget().topPanelWidget(width, height),
       body: const CustomScrollView(
         slivers: [
           MainSliverAppBarWidget(),
           BodyWidgets(),
-          // SliverList(
-          //   delegate: SliverChildBuilderDelegate(
-          //     (BuildContext context, int index) {
-          //       return Container(
-          //         height: 50,
-          //         alignment: Alignment.center,
-          //         color: index.isEven ? Colors.green[300] : Colors.white,
-          //         child: Text('List item :  $index'),
-          //       );
-          //     },
-          //     childCount: 15,
-          //   ),
-          // ),
-          // // SliverGrid(
-          // //   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          // //     maxCrossAxisExtent: 200.0,
-          // //     mainAxisSpacing: 10.0,
-          // //     crossAxisSpacing: 10.0,
-          // //     childAspectRatio: 4.0,
-          // //   ),
-          // //   delegate: SliverChildBuilderDelegate(
-          // //     (BuildContext context, int index) {
-          // //       return Container(
-          // //         alignment: Alignment.center,
-          // //         color: Colors.cyan[100 * (index % 8)],
-          // //         child: Text('grid item $index'),
-          // //       );
-          // //     },
-          // //     childCount: 15,
-          // //   ),
-          // // ),
+          SliverPadding(
+            padding: EdgeInsets.only(top: 60),
+            sliver: SliverToBoxAdapter(
+              child: FooterWidget(),
+            ),
+          ),
         ],
       ),
     );

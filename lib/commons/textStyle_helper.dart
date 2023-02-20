@@ -1,6 +1,5 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:selim_trade_app/commons/theme_helper.dart';
 
 class TextStyleHelper {
@@ -34,8 +33,8 @@ class TextStyleHelper {
     color: ThemeHelper.color414141,
   );
 
-  static TextStyle f18w500 = TextStyle(
-    fontSize: 18.sp,
+  static const TextStyle f18w500 = TextStyle(
+    fontSize: 18,
     fontWeight: FontWeight.w500,
     color: ThemeHelper.black,
   );
@@ -45,9 +44,9 @@ class TextStyleHelper {
     color: ThemeHelper.color414141,
   );
 
-  static const TextStyle f10w800 = TextStyle(
+  static const TextStyle f10w300 = TextStyle(
     fontSize: 10,
-    fontWeight: FontWeight.w800,
+    fontWeight: FontWeight.w300,
     color: ThemeHelper.colorF1F6FF,
   );
 
@@ -97,5 +96,10 @@ class TextStyleHelper {
     fontSize: 12,
     fontWeight: FontWeight.w600,
     color: ThemeHelper.color001645,
+  );
+  static const TextStyle f9w700 = TextStyle(
+    fontSize: 9,
+    fontWeight: FontWeight.w700,
+    color: ThemeHelper.color414141,
   );
 }

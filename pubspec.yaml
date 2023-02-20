@@ -41,15 +41,13 @@ dependencies:
   equatable: ^2.0.5
   flutter_bloc: ^8.0.1
   flutter_native_splash: ^2.2.17
-  flutter_screenutil: ^5.5.3+2
   get_it: ^7.2.0
-  google_fonts: ^3.0.1
-  image_cropper: ^3.0.1
-  image_picker: ^0.8.6+1
   intl: ^0.18.0
   loading_animation_widget: ^1.2.0+4
   shared_preferences: ^2.0.16
   carousel_slider: ^4.2.1
+  mask_text_input_formatter: ^2.4.0
+  google_maps_flutter: ^2.2.3
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
