@@ -1,11 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:selim_trade_app/core/exports/export.dart';
+import 'package:selim_trade_app/feature/main/presentation/local_widgets/reviews_dialog_widget.dart';
+import 'package:selim_trade_app/feature/main/presentation/local_widgets/scroll_button_widget.dart';
+
+import '../../../../core/custom_painter/reviews_box_custom_painter.dart';
 
 class ReviewsWidget extends StatelessWidget {
   const ReviewsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List<Map<String, String>> listOfReviews = [
+      {
+        "image": 'https://www.peoples.ru/character/movie/loki/loki_2.jpg',
+        "author": 'Улан Султанов',
+        "typeOfGates": 'ворота атоматические',
+        "reviewsText":
+            'Ворота стоят уже более двух лет. За это время с ними не было никаких проблем. Спасибо, Selim Trade!',
+      },
+      {
+        "image": 'https://i.ytimg.com/vi/nIL1ZPP4Af4/maxresdefault.jpg',
+        "author": 'Улан Султанов',
+        "typeOfGates": 'ворота атоматические',
+        "reviewsText":
+            'Ворота стоят уже более двух лет. За это время с ними не было никаких проблем. Спасибо, Selim Trade!',
+      },
+      {
+        "image":
+            'https://www.meme-arsenal.com/memes/b191faa34f0b45cb1b047242410c7ce2.jpg',
+        "author": 'Улан Султанов',
+        "typeOfGates": 'ворота атоматические',
+        "reviewsText":
+            'Ворота стоят уже более двух лет. За это время с ними не было никаких проблем. Спасибо, Selim Trade!sdkjcn sdjcns sdjcns, nksjdncks skdjcnksjd skjdcnskjd skjdcnskjd skdjcnskjdnc skdjcnkjsd skdjcnkjsdn',
+      },
+    ];
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Column(
@@ -16,89 +44,147 @@ class ReviewsWidget extends StatelessWidget {
           style: TextStyleHelper.f16w700,
         ),
         const SizedBox(height: 28),
-        Stack(
-          children: [
-            SizedBox(
-              width: width * 0.66,
-              height: height * 0.18,
-              child: Stack(
-                children: [
-                  CustomPaint(
-                    size: Size(width * 0.66, height * 0.18),
-                    painter: RPSCustomPainter(),
-                    child: Container(
-                      decoration: BoxDecoration(
+        SizedBox(
+          width: width,
+          height: height * 0.21,
+          child: ListView.separated(
+            itemCount: listOfReviews.length,
+            scrollDirection: Axis.horizontal,
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.only(left: 17, top: 15, right: 17),
+            itemBuilder: (context, index) => Stack(
+              children: [
+                SizedBox(
+                  width: width * 0.66,
+                  height: height * 0.18,
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      ClipRRect(
                         borderRadius: BorderRadius.circular(4),
+                        child: CustomPaint(
+                          size: Size(width * 0.66, height * 0.18),
+                          painter: ReviewsBoxCustomPainter(),
+                        ),
                       ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 14.5,
-                    bottom: 105,
-                    child: SafeArea(
-                      child: CachedNetworkImageWidget(
-                        imageUrl:
-                            'https://www.peoples.ru/character/movie/loki/loki_2.jpg',
-                        width: width * 0.155,
-                        height: height * 0.068,
-                        shape: BoxShape.circle,
+                      Positioned(
+                        left: 14.5,
+                        bottom: 105,
+                        child: SafeArea(
+                          child: CachedNetworkImageWidget(
+                            imageUrl: listOfReviews[index]['image'],
+                            width: width * 0.155,
+                            height: height * 0.068,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
                       ),
-                    ),
+                      Positioned(
+                        top: 9,
+                        left: 88,
+                        bottom: 105,
+                        right: 14,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              listOfReviews[index]['author'] ?? 'unknown',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyleHelper.f13w600,
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              listOfReviews[index]['typeOfGates'] ?? 'unknown',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyleHelper.f11w300,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        top: 64,
+                        left: 6,
+                        bottom: 18,
+                        right: 60,
+                        child: SizedBox(
+                          width: width * 0.61,
+                          child: Text(
+                            listOfReviews[index]['reviewsText'] ?? '',
+                            maxLines: 5,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyleHelper.f12w400,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 100,
+                        left: 195,
+                        bottom: 5,
+                        right: 5,
+                        child: GestureDetector(
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: ThemeHelper.white,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: ThemeHelper.white20,
+                                  offset: Offset(0.5, 0.5),
+                                  blurRadius: 10,
+                                ),
+                              ],
+                            ),
+                            padding: const EdgeInsets.all(15),
+                            child: Image.asset(
+                              IconHelper.readMore,
+                              color: ThemeHelper.color08B89D,
+                              width: 25,
+                              height: 25,
+                            ),
+                          ),
+                          onTap: () => showDialog(
+                            context: context,
+                            builder: (context) => ReviewsDialogWidget(
+                              width: width,
+                              height: height,
+                              author: listOfReviews[index]['author'],
+                              image: listOfReviews[index]['image'],
+                              typeGates: listOfReviews[index]['typeOfGates'],
+                              reviewsText: listOfReviews[index]['reviewsText'],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+            separatorBuilder: (BuildContext context, int index) =>
+                const SizedBox(width: 22),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 20, left: 120, right: 120),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ScrollButtonWidget(
+                icon: IconHelper.arrowLeft,
+                iconTheme: ThemeHelper.color105BFB,
+                onPressed: () {},
+              ),
+              ScrollButtonWidget(
+                icon: IconHelper.arrowRight,
+                iconTheme: ThemeHelper.color105BFB,
+                onPressed: () {},
+              ),
+            ],
+          ),
         ),
       ],
     );
-  }
-}
-
-class RPSCustomPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    Paint paint0 = Paint()
-      ..color = Colors.amber
-      ..style = PaintingStyle.fill
-      ..strokeWidth = 1.0;
-
-    Path path0 = Path();
-    path0.moveTo(0, size.height);
-    path0.lineTo(0, 0);
-    path0.quadraticBezierTo(
-        size.width * 0.0317427, 0, size.width * 0.0423237, 0);
-    path0.cubicTo(
-        size.width * 0.0814938,
-        size.height * 0.0000667,
-        size.width * 0.0543568,
-        size.height * 0.1009333,
-        size.width * 0.0583402,
-        size.height * 0.1346000);
-    path0.cubicTo(
-        size.width * 0.0419917,
-        size.height * 0.4044000,
-        size.width * 0.3046058,
-        size.height * 0.3892000,
-        size.width * 0.2916598,
-        size.height * 0.1358000);
-    path0.cubicTo(
-        size.width * 0.2954668,
-        size.height * 0.1018500,
-        size.width * 0.2625726,
-        size.height * -0.0002000,
-        size.width * 0.3068880,
-        0);
-    path0.quadraticBezierTo(size.width * 0.4801660, 0, size.width, 0);
-    path0.lineTo(size.width, size.height);
-    path0.lineTo(0, size.height);
-    path0.close();
-
-    canvas.drawPath(path0, paint0);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
   }
 }

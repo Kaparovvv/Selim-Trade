@@ -31,7 +31,7 @@ class OurWorksWidget extends StatelessWidget {
               boxShadow: const BoxShadow(
                 color: ThemeHelper.color105BFB,
                 offset: Offset(0, 0),
-                blurRadius: 4.48,
+                blurRadius: 3,
               ),
             );
           },

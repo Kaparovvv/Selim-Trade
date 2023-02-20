@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:selim_trade_app/core/widgets/sending_an_applica_widget.dart';
 import 'package:selim_trade_app/feature/main/presentation/local_widgets/about_company_widget.dart';
 import 'package:selim_trade_app/feature/main/presentation/local_widgets/latest_news_widget.dart';
 import 'package:selim_trade_app/feature/main/presentation/local_widgets/our_advantages_widget.dart';
@@ -63,10 +64,17 @@ class BodyWidgets extends StatelessWidget {
                   child: OurServiceWidget(),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 140),
+                  padding: EdgeInsets.only(top: 60),
                   child: ReviewsWidget(),
                 ),
-                SizedBox(height: 200),
+                Padding(
+                  padding: EdgeInsets.only(top: 60),
+                  child: SendingAnApplicationWidget(),
+                ),
+                // Padding(
+                //   padding: EdgeInsets.only(top: 60),
+                //   child: FooterWidget(),
+                // ),
               ],
             ),
           ),

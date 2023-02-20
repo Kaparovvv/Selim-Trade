@@ -16,4 +16,6 @@ class IconHelper {
   static const String instagram = 'assets/icons/instagram.png';
   static const String call = 'assets/icons/call.png';
   static const String order = 'assets/icons/order.png';
+  static const String readMore = 'assets/icons/read_more.png';
+  static const String blueLogo = 'assets/icons/blue_logo.png';
 }

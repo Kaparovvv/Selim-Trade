@@ -5,10 +5,12 @@ import '../../../../core/exports/export.dart';
 class ScrollButtonWidget extends StatelessWidget {
   final String icon;
   final Function() onPressed;
+  final Color iconTheme;
   const ScrollButtonWidget({
     Key? key,
     required this.icon,
     required this.onPressed,
+    required this.iconTheme,
   }) : super(key: key);
 
   @override
@@ -32,7 +34,7 @@ class ScrollButtonWidget extends StatelessWidget {
         ),
         child: ImageIcon(
           AssetImage(icon),
-          color: ThemeHelper.color105BFB,
+          color: iconTheme,
         ),
       ),
     );
