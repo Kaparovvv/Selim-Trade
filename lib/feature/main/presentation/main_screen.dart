@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:selim_trade_app/core/widgets/custom_drawer_widget.dart';
-import 'package:selim_trade_app/core/widgets/footer_widgets/footer_widget.dart';
 
 import '../../../core/exports/export.dart';
+import '../../../core/widgets/footer_and_application_widget.dart';
 import 'local_widgets/body_widgets.dart';
 
 class MainScreen extends StatefulWidget {
@@ -13,39 +12,53 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  ScrollController? scrollController;
+  late ScrollController _scrollController;
 
   @override
   void initState() {
-    scrollController = ScrollController();
+    _scrollController = ScrollController();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-
     return Scaffold(
       extendBodyBehindAppBar: true,
-      endDrawer: CustomDrawerWidget(
-        width: width,
-        height: height,
-        phone: '+996 (552) 57 07 55',
+      appBar: TopPanelWidget().topPanelWidget(
+        context.width,
+        context.height,
+        context,
+        IconHelper.logo,
+        ThemeHelper.colorF1F6FF,
       ),
-      appBar: TopPanelWidget().topPanelWidget(width, height),
-      body: const CustomScrollView(
+      body: CustomScrollView(
+        controller: _scrollController,
+        physics: const BouncingScrollPhysics(),
         slivers: [
-          MainSliverAppBarWidget(),
-          BodyWidgets(),
-          SliverPadding(
+          MainSliverAppBarWidget(
+            onPressed: () {
+              _scrollController.animateTo(
+                _scrollController.position.maxScrollExtent,
+                duration: const Duration(milliseconds: 900),
+                curve: Curves.easeInOutSine,
+              );
+            },
+          ),
+          const BodyWidgets(),
+          const SliverPadding(
             padding: EdgeInsets.only(top: 60),
             sliver: SliverToBoxAdapter(
-              child: FooterWidget(),
+              child: FooterAndApplication(),
             ),
           ),
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.dispose();
   }
 }

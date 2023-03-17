@@ -1,32 +1,32 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:selim_trade_app/feature/main/presentation/local_widgets/custom_outli_button_widget.dart';
+import 'package:selim_trade_app/core/router/app_router.gr.dart';
+
+import 'package:selim_trade_app/core/widgets/custom_outli_button_widget.dart';
 import 'package:selim_trade_app/feature/main/presentation/local_widgets/scroll_button_widget.dart';
 
 import '../../../../core/exports/export.dart';
 import '../../../../core/widgets/image_and_text_box_widget.dart';
 
-extension Test on BuildContext {
-  double get width => MediaQuery.of(this).size.width;
-  double get height => MediaQuery.of(this).size.height;
-}
-
 class WeOfferWidget extends StatefulWidget {
-  final String? imageUrl;
-  final String? description;
-  const WeOfferWidget({super.key, this.imageUrl, this.description});
+  final List<Offer> listOfOffer;
+  const WeOfferWidget({super.key, required this.listOfOffer});
 
   @override
   State<WeOfferWidget> createState() => _WeOfferWidgetState();
 }
 
 class _WeOfferWidgetState extends State<WeOfferWidget> {
-  late ScrollController _scrollController;
+  final PageController _pageController = PageController(
+    initialPage: 0,
+    viewportFraction: 0.7,
+  );
 
+  var _pageChanged = 0;
   @override
   void initState() {
-    _scrollController = ScrollController();
-
     super.initState();
+    _pageController.addListener(() {});
   }
 
   @override
@@ -43,19 +43,31 @@ class _WeOfferWidgetState extends State<WeOfferWidget> {
         SizedBox(
           width: context.width,
           height: context.height * 0.21,
-          child: ListView.separated(
-            controller: _scrollController,
-            itemCount: 10,
-            scrollDirection: Axis.horizontal,
+          child: PageView.builder(
+            controller: _pageController,
+            itemCount: widget.listOfOffer.length,
             physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.only(left: 17, right: 17),
-            itemBuilder: (context, index) => ImageAndTextBoxWidget(
-              width: context.width * 0.69,
-              height: context.height * 0.21,
-              imageUrl: widget.imageUrl,
-              description: widget.description,
-            ),
-            separatorBuilder: (context, index) => const SizedBox(width: 20),
+            onPageChanged: (index) {
+              setState(() {
+                _pageChanged = index;
+              });
+            },
+            itemBuilder: (context, index) {
+              var offer = widget.listOfOffer[index];
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Center(
+                  child: ImageAndTextBoxWidget(
+                    width: context.width * 0.69,
+                    height: context.height * 0.21,
+                    alignment: AlignmentDirectional.bottomStart,
+                    imageUrl: offer.image,
+                    title: offer.typeOfGates,
+                    onTap: () {},
+                  ),
+                ),
+              );
+            },
           ),
         ),
         const SizedBox(height: 15),
@@ -67,27 +79,41 @@ class _WeOfferWidgetState extends State<WeOfferWidget> {
               ScrollButtonWidget(
                 icon: IconHelper.arrowLeft,
                 iconTheme: ThemeHelper.color105BFB,
-                onPressed: () {},
+                onPressed: () => _pageController.animateToPage(
+                  --_pageChanged,
+                  duration: const Duration(milliseconds: 250),
+                  curve: Curves.ease,
+                ),
               ),
               CustomOutlinedButtonWidget(
                 title: TextHelper.viewAll,
-                onPressed: () {
-                  _scrollController.animateTo(
-                    0,
-                    duration: const Duration(seconds: 1),
-                    curve: Curves.easeIn,
-                  );
-                },
+                onPressed: () => context.router.push(
+                  ListServicesScreenRoute(
+                    listOfOffer: widget.listOfOffer,
+                  ),
+                ),
               ),
               ScrollButtonWidget(
                 icon: IconHelper.arrowRight,
                 iconTheme: ThemeHelper.color105BFB,
-                onPressed: () {},
+                onPressed: () {
+                  _pageController.animateToPage(
+                    ++_pageChanged,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.ease,
+                  );
+                },
               ),
             ],
           ),
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
   }
 }

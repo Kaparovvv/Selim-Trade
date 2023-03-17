@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:selim_trade_app/commons/theme_helper.dart';
 import 'package:selim_trade_app/core/router/app_router.gr.dart';
 
 class MyApp extends StatelessWidget {
@@ -13,9 +14,10 @@ class MyApp extends StatelessWidget {
       routerDelegate: _appRouter.delegate(),
       debugShowCheckedModeBanner: false,
       title: 'Selim Trade',
+      color: ThemeHelper.white,
       theme: ThemeData(
         fontFamily: 'Montserrat',
-        appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
+        appBarTheme: const AppBarTheme(backgroundColor: ThemeHelper.white),
       ),
     );
   }

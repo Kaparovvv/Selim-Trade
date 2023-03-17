@@ -6,12 +6,12 @@ import '../exports/export.dart';
 class CachedNetworkImageWidget extends StatelessWidget {
   const CachedNetworkImageWidget({
     Key? key,
-    this.isRadius = true,
-    required this.imageUrl,
     required this.width,
     required this.height,
+    required this.imageUrl,
     this.radius,
     this.shape,
+    this.isRadius = true,
   }) : super(key: key);
   final bool isRadius;
   final String? imageUrl;
@@ -34,7 +34,7 @@ class CachedNetworkImageWidget extends StatelessWidget {
             shape: shape ?? BoxShape.rectangle,
             image: DecorationImage(
               image: imageProvider,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
           ),
         ),

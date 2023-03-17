@@ -46,10 +46,24 @@ class TextHelper {
   static const String works = 'Работы';
   static const String reviews = 'Отзывы';
   static const String news = 'Новости';
+  static const String relatedNews = 'похожие новости';
+  static const String downloadMore = 'Загрузить ещё';
   static const String workDays = 'Пн-Пт 8:30–18:30';
   static const String saturday = 'Суббота 8:30–14:00';
   static const String contact1 = '+996 (552) 57 07 55';
   static const String contact2 = '+996 (500) 88 80 51';
   static const String contact3 = '+996 (772) 32 76 76';
+  static const String whatsAppPhone = '552570755';
   static const String address = 'АДРЕС\nг. Бишкек, ул. Айни 22';
+  static const String toLearnMore = 'узнать больше';
+  static const String ourServices = 'Наши услуги';
+  static const String newsOfCompany = 'Новости компании';
+  static const String typeOfGates = 'типы ворот';
+  static const String mainAdvantages = 'Основные преимущества';
+  static const String newsDesc =
+      'К вашему вниманию Здесь мы собрали все актуальные новости нашей компании';
+  static const String employeeExperience =
+      'Наши сотрудники прошли сертифицированные тренинги в Учебных центрах ГК DoorHan в г. Москва, г. Алматы, г. Астаны а так же успешно сдали экзамены и являются обладателями сертификатов по направлениям «Воротные системы, ролл ставни, ролл ворота, автоматические системы», «Монтаж автоматики».';
+  static const String ourWorksDesc =
+      'Здесь мы собрали наши лучшие проекты, чтобы вы могли вдохновиться идеями для собственного проекта. Вы найдёте проект по душе и нраву, который захотите воплотить в жизнь.';
 }

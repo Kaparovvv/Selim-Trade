@@ -5,8 +5,25 @@ import 'package:selim_trade_app/feature/main/presentation/local_widgets/scroll_b
 
 import '../../../../core/custom_painter/reviews_box_custom_painter.dart';
 
-class ReviewsWidget extends StatelessWidget {
+class ReviewsWidget extends StatefulWidget {
   const ReviewsWidget({super.key});
+
+  @override
+  State<ReviewsWidget> createState() => _ReviewsWidgetState();
+}
+
+class _ReviewsWidgetState extends State<ReviewsWidget> {
+  final PageController _pageController = PageController(
+    initialPage: 0,
+    viewportFraction: 0.7,
+  );
+  var _pageChanged = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +51,7 @@ class ReviewsWidget extends StatelessWidget {
             'Ворота стоят уже более двух лет. За это время с ними не было никаких проблем. Спасибо, Selim Trade!sdkjcn sdjcns sdjcns, nksjdncks skdjcnksjd skjdcnskjd skjdcnskjd skdjcnskjdnc skdjcnkjsd skdjcnkjsdn',
       },
     ];
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -45,125 +61,136 @@ class ReviewsWidget extends StatelessWidget {
         ),
         const SizedBox(height: 28),
         SizedBox(
-          width: width,
-          height: height * 0.21,
-          child: ListView.separated(
+          width: context.width,
+          height: context.height * 0.21,
+          child: PageView.builder(
+            controller: _pageController,
             itemCount: listOfReviews.length,
-            scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.only(left: 17, top: 15, right: 17),
-            itemBuilder: (context, index) => Stack(
-              children: [
-                SizedBox(
-                  width: width * 0.66,
-                  height: height * 0.18,
-                  child: Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(4),
-                        child: CustomPaint(
-                          size: Size(width * 0.66, height * 0.18),
-                          painter: ReviewsBoxCustomPainter(),
-                        ),
-                      ),
-                      Positioned(
-                        left: 14.5,
-                        bottom: 105,
-                        child: SafeArea(
-                          child: CachedNetworkImageWidget(
-                            imageUrl: listOfReviews[index]['image'],
-                            width: width * 0.155,
-                            height: height * 0.068,
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 9,
-                        left: 88,
-                        bottom: 105,
-                        right: 14,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              listOfReviews[index]['author'] ?? 'unknown',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyleHelper.f13w600,
+            onPageChanged: (index) {
+              setState(() {
+                _pageChanged = index;
+              });
+            },
+            itemBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 11),
+              child: Center(
+                child: Stack(
+                  children: [
+                    SizedBox(
+                      width: context.width * 0.66,
+                      height: context.height * 0.18,
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(4),
+                            child: CustomPaint(
+                              size: Size(
+                                context.width * 0.66,
+                                context.height * 0.18,
+                              ),
+                              painter: ReviewsBoxCustomPainter(),
                             ),
-                            const SizedBox(height: 4),
-                            Text(
-                              listOfReviews[index]['typeOfGates'] ?? 'unknown',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyleHelper.f11w300,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Positioned(
-                        top: 64,
-                        left: 6,
-                        bottom: 18,
-                        right: 60,
-                        child: SizedBox(
-                          width: width * 0.61,
-                          child: Text(
-                            listOfReviews[index]['reviewsText'] ?? '',
-                            maxLines: 5,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyleHelper.f12w400,
                           ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 100,
-                        left: 195,
-                        bottom: 5,
-                        right: 5,
-                        child: GestureDetector(
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: ThemeHelper.white,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: ThemeHelper.white20,
-                                  offset: Offset(0.5, 0.5),
-                                  blurRadius: 10,
+                          Positioned(
+                            left: 14.5,
+                            bottom: 105,
+                            child: SafeArea(
+                              child: CachedNetworkImageWidget(
+                                imageUrl: listOfReviews[index]['image'],
+                                width: context.width * 0.155,
+                                height: context.height * 0.068,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: 9,
+                            left: 88,
+                            bottom: 105,
+                            right: 14,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  listOfReviews[index]['author'] ?? 'unknown',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyleHelper.f13w600,
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  listOfReviews[index]['typeOfGates'] ??
+                                      'unknown',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyleHelper.f11w300,
                                 ),
                               ],
                             ),
-                            padding: const EdgeInsets.all(15),
-                            child: Image.asset(
-                              IconHelper.readMore,
-                              color: ThemeHelper.color08B89D,
-                              width: 25,
-                              height: 25,
+                          ),
+                          Positioned(
+                            top: 64,
+                            left: 6,
+                            bottom: 18,
+                            right: 60,
+                            child: SizedBox(
+                              width: context.width * 0.61,
+                              child: Text(
+                                listOfReviews[index]['reviewsText'] ?? '',
+                                maxLines: 5,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyleHelper.f12w400,
+                              ),
                             ),
                           ),
-                          onTap: () => showDialog(
-                            context: context,
-                            builder: (context) => ReviewsDialogWidget(
-                              width: width,
-                              height: height,
-                              author: listOfReviews[index]['author'],
-                              image: listOfReviews[index]['image'],
-                              typeGates: listOfReviews[index]['typeOfGates'],
-                              reviewsText: listOfReviews[index]['reviewsText'],
+                          Positioned(
+                            top: 100,
+                            left: 195,
+                            bottom: 5,
+                            right: 5,
+                            child: GestureDetector(
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  color: ThemeHelper.white,
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: ThemeHelper.white20,
+                                      offset: Offset(0.5, 0.5),
+                                      blurRadius: 10,
+                                    ),
+                                  ],
+                                ),
+                                padding: const EdgeInsets.all(15),
+                                child: Image.asset(
+                                  IconHelper.readMore,
+                                  color: ThemeHelper.color08B89D,
+                                  width: 25,
+                                  height: 25,
+                                ),
+                              ),
+                              onTap: () => showDialog(
+                                context: context,
+                                builder: (context) => ReviewsDialogWidget(
+                                  author: listOfReviews[index]['author'],
+                                  image: listOfReviews[index]['image'],
+                                  typeGates: listOfReviews[index]
+                                      ['typeOfGates'],
+                                  reviewsText: listOfReviews[index]
+                                      ['reviewsText'],
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-            separatorBuilder: (BuildContext context, int index) =>
-                const SizedBox(width: 22),
           ),
         ),
         Padding(
@@ -174,12 +201,20 @@ class ReviewsWidget extends StatelessWidget {
               ScrollButtonWidget(
                 icon: IconHelper.arrowLeft,
                 iconTheme: ThemeHelper.color105BFB,
-                onPressed: () {},
+                onPressed: () => _pageController.animateToPage(
+                  --_pageChanged,
+                  duration: const Duration(milliseconds: 250),
+                  curve: Curves.ease,
+                ),
               ),
               ScrollButtonWidget(
                 icon: IconHelper.arrowRight,
                 iconTheme: ThemeHelper.color105BFB,
-                onPressed: () {},
+                onPressed: () => _pageController.animateToPage(
+                  ++_pageChanged,
+                  duration: const Duration(milliseconds: 250),
+                  curve: Curves.ease,
+                ),
               ),
             ],
           ),

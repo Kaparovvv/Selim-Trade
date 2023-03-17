@@ -9,13 +9,11 @@ class MiniWidgetCompanyLocation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Stack(
       children: [
         Container(
-          width: width * 0.3361,
-          height: height * 0.1453,
+          width: context.width * 0.3361,
+          height: context.height * 0.1453,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             border: Border.all(
@@ -50,8 +48,8 @@ class MiniWidgetCompanyLocation extends StatelessWidget {
           child: InkWell(
             borderRadius: BorderRadius.circular(4),
             child: Container(
-              width: width * 0.3361,
-              height: height * 0.1453,
+              width: context.width * 0.3361,
+              height: context.height * 0.1453,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
                 color: Colors.transparent,
