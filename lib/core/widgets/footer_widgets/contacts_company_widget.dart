@@ -7,16 +7,14 @@ class ContactsCompanyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Image.asset(
           IconHelper.blueLogo,
-          width: width * 0.125,
-          height: height * 0.0283,
+          width: context.width * 0.125,
+          height: context.height * 0.0283,
           fit: BoxFit.cover,
         ),
         const SizedBox(width: 13.71),
@@ -25,17 +23,17 @@ class ContactsCompanyWidget extends StatelessWidget {
           children: [
             customText(TextHelper.operatingMode),
             const SizedBox(height: 2.5),
-            customText('Пн-Пт 8:30–18:30'),
+            customText(TextHelper.workDays),
             const SizedBox(height: 2.5),
-            customText('Суббота 8:30–14:00'),
+            customText(TextHelper.saturday),
             const SizedBox(height: 7.5),
             customText(TextHelper.phone.toUpperCase()),
             const SizedBox(height: 2.5),
-            customText('+996 (552) 57 07 55'),
+            customText(TextHelper.contact1),
             const SizedBox(height: 2.5),
-            customText('+996 (552) 57 07 55'),
+            customText(TextHelper.contact2),
             const SizedBox(height: 2.5),
-            customText('+996 (552) 57 07 55'),
+            customText(TextHelper.contact3),
           ],
         ),
       ],

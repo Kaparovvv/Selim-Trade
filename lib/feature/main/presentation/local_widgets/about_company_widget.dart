@@ -7,7 +7,6 @@ class AboutCompanyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -17,7 +16,7 @@ class AboutCompanyWidget extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         Container(
-          width: width * 0.85,
+          width: context.width * 0.85,
           color: ThemeHelper.white,
           padding: const EdgeInsets.only(left: 5, top: 4, bottom: 10),
           child: Column(

@@ -18,4 +18,5 @@ class IconHelper {
   static const String order = 'assets/icons/order.png';
   static const String readMore = 'assets/icons/read_more.png';
   static const String blueLogo = 'assets/icons/blue_logo.png';
+  static const String blackLogo = 'assets/icons/logo_black.png';
 }

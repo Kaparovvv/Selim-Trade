@@ -15,11 +15,9 @@ class ScrollButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return SizedBox(
-      width: width * 0.11,
-      height: height * 0.05,
+      width: context.width * 0.11,
+      height: context.height * 0.05,
       child: ElevatedButton(
         onPressed: () => onPressed(),
         style: ElevatedButton.styleFrom(

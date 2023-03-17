@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:selim_trade_app/core/url_launcher/url_launcher.dart';
 import 'package:selim_trade_app/core/widgets/footer_widgets/contacts_company_widget.dart';
 import 'package:selim_trade_app/core/widgets/footer_widgets/mini_widget_compa_loca.dart';
 import '../../exports/export.dart';
@@ -8,18 +9,16 @@ class FooterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return SizedBox(
-      width: width,
-      height: height * 0.32,
+      width: context.width,
+      height: context.height * 0.32,
       child: Stack(
         alignment: Alignment.bottomCenter,
         clipBehavior: Clip.none,
         children: [
           Container(
-            width: width,
-            height: height * 0.0677,
+            width: context.width,
+            height: context.height * 0.0677,
             decoration: const BoxDecoration(
               color: ThemeHelper.color5061FF,
             ),
@@ -37,8 +36,8 @@ class FooterWidget extends StatelessWidget {
           Positioned(
             bottom: 36,
             child: Container(
-              width: width,
-              height: height * 0.2783,
+              width: context.width,
+              height: context.height * 0.2783,
               decoration: BoxDecoration(
                 color: ThemeHelper.colorF9F9F9,
                 borderRadius: BorderRadius.circular(9),
@@ -72,7 +71,7 @@ class FooterWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            width: width * 0.26,
+                            width: context.width * 0.26,
                             child: const Text(
                               TextHelper.socialNetwork,
                               maxLines: 2,
@@ -85,16 +84,19 @@ class FooterWidget extends StatelessWidget {
                             children: [
                               iconButton(
                                 IconHelper.instagram,
-                                width,
-                                height,
-                                () {},
+                                context.width,
+                                context.height,
+                                () {
+                                  UrlLauncher().makeInstagram();
+                                },
                               ),
                               const SizedBox(width: 10),
                               iconButton(
                                 IconHelper.whatsapp,
-                                width,
-                                height,
-                                () {},
+                                context.width,
+                                context.height,
+                                () => UrlLauncher()
+                                    .makeWhatsapp(TextHelper.whatsAppPhone),
                               ),
                             ],
                           ),

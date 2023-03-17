@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/exports/export.dart';
+import '../exports/export.dart';
 
 class CustomOutlinedButtonWidget extends StatelessWidget {
   final String title;
   final Function() onPressed;
+  final double height;
+  final TextStyle textStyle;
+  final double radius;
   const CustomOutlinedButtonWidget({
     Key? key,
     required this.title,
     required this.onPressed,
+    this.height = 14,
+    this.textStyle = TextStyleHelper.f12w400,
+    this.radius = 10,
   }) : super(key: key);
 
   @override
@@ -16,8 +22,8 @@ class CustomOutlinedButtonWidget extends StatelessWidget {
     return OutlinedButton(
       onPressed: () => onPressed(),
       style: OutlinedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(
-          vertical: 14,
+        padding: EdgeInsets.symmetric(
+          vertical: height,
           horizontal: 10,
         ),
         elevation: 0,
@@ -26,12 +32,12 @@ class CustomOutlinedButtonWidget extends StatelessWidget {
           width: 1,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(radius),
         ),
       ),
       child: Text(
         title,
-        style: TextStyleHelper.f12w400,
+        style: textStyle,
       ),
     );
   }

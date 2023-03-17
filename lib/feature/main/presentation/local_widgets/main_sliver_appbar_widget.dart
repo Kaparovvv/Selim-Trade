@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:selim_trade_app/commons/icon_helper.dart';
-import 'package:selim_trade_app/commons/images_helper.dart';
-import 'package:selim_trade_app/commons/textStyle_helper.dart';
-import 'package:selim_trade_app/commons/text_helper.dart';
-import 'package:selim_trade_app/commons/theme_helper.dart';
+import 'package:selim_trade_app/core/exports/export.dart';
 
 // ignore: must_be_immutable
 class MainSliverAppBarWidget extends StatefulWidget {
+  final Function() onPressed;
   const MainSliverAppBarWidget({
     Key? key,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -18,11 +16,9 @@ class MainSliverAppBarWidget extends StatefulWidget {
 class _MainSliverAppBarWidgetState extends State<MainSliverAppBarWidget> {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return SliverAppBar(
       elevation: 0,
-      expandedHeight: MediaQuery.of(context).size.height * 0.42,
+      expandedHeight: context.height * 0.42,
       automaticallyImplyLeading: false,
       backgroundColor: ThemeHelper.white,
       stretch: true,
@@ -76,8 +72,8 @@ class _MainSliverAppBarWidgetState extends State<MainSliverAppBarWidget> {
                   ),
                   const SizedBox(height: 25),
                   Container(
-                    width: width * 0.58,
-                    height: height * 0.04,
+                    width: context.width * 0.58,
+                    height: context.height * 0.04,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
                       gradient: const LinearGradient(
@@ -93,7 +89,7 @@ class _MainSliverAppBarWidgetState extends State<MainSliverAppBarWidget> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      onPressed: () {},
+                      onPressed: () => widget.onPressed(),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: const [

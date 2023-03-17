@@ -21,8 +21,6 @@ class OurServiceWidget extends StatelessWidget {
       IconHelper.service,
     ];
 
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -32,16 +30,16 @@ class OurServiceWidget extends StatelessWidget {
         ),
         const SizedBox(height: 21),
         SizedBox(
-          width: width,
-          height: height * 0.15,
+          width: context.width,
+          height: context.height * 0.15,
           child: ListView.separated(
             itemCount: titles.length,
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.only(left: 17, right: 17),
             itemBuilder: (context, index) => Container(
-              width: width * 0.55,
-              height: height * 0.15,
+              width: context.width * 0.55,
+              height: context.height * 0.15,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: ThemeHelper.colorFDFDFD,

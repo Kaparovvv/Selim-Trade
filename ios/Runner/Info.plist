@@ -28,6 +28,12 @@
 		<string>LaunchScreen</string>
 		<key>UIMainStoryboardFile</key>
 		<string>Main</string>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>tel</string>
+			<string>whatsapp</string>
+			<string>instagram</string>
+		</array>
 		<key>UISupportedInterfaceOrientations</key>
 		<array>
 			<string>UIInterfaceOrientationPortrait</string>
@@ -65,5 +71,6 @@
 			<string>here-location</string>
 			<string>tomtomgo</string>
 		</array>
+		
 	</dict>
 </plist>

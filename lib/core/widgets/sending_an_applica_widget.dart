@@ -33,8 +33,6 @@ class _SendingAnApplicationWidgetState
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Form(
@@ -71,8 +69,8 @@ class _SendingAnApplicationWidgetState
             ),
             const SizedBox(height: 15),
             Container(
-              width: width * 0.77,
-              height: height * 0.07,
+              width: context.width * 0.77,
+              height: context.height * 0.07,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 gradient: const LinearGradient(
@@ -91,7 +89,7 @@ class _SendingAnApplicationWidgetState
                 ),
                 onPressed: () {
                   if (_formkey.currentState!.validate()) {
-                    print('Validate Success');
+                    log('Validate Success');
                   }
                 },
               ),

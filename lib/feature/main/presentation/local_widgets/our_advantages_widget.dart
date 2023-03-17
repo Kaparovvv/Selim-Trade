@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:selim_trade_app/commons/icon_helper.dart';
-import 'package:selim_trade_app/commons/textStyle_helper.dart';
-import 'package:selim_trade_app/commons/text_helper.dart';
-import 'package:selim_trade_app/commons/theme_helper.dart';
+import 'package:selim_trade_app/core/exports/export.dart';
 
 class OurAdvantagesWidget extends StatelessWidget {
   const OurAdvantagesWidget({super.key});
@@ -24,8 +21,6 @@ class OurAdvantagesWidget extends StatelessWidget {
       IconHelper.repair,
     ];
 
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -35,16 +30,16 @@ class OurAdvantagesWidget extends StatelessWidget {
         ),
         const SizedBox(height: 19),
         SizedBox(
-          width: width,
-          height: height * 0.15,
+          width: context.width,
+          height: context.height * 0.15,
           child: ListView.separated(
             itemCount: titles.length,
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.only(left: 17, right: 17),
             itemBuilder: (context, index) => Container(
-              width: width * 0.62,
-              height: height * 0.15,
+              width: context.width * 0.62,
+              height: context.height * 0.15,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: ThemeHelper.colorFDFDFD,
