@@ -101,7 +101,7 @@ class _MainSliverAppBarWidgetState extends State<MainSliverAppBarWidget> {
                           Text(
                             TextHelper.orderATage,
                             style: TextStyleHelper.f15w900,
-                          )
+                          ),
                         ],
                       ),
                     ),

@@ -24,10 +24,17 @@ class TopPanelWidget {
       automaticallyImplyLeading: false,
       backgroundColor: Colors.transparent,
       elevation: 0,
-      title: Image.asset(
-        width: width * 0.2,
-        height: height * 0.04,
-        iconLogo,
+      title: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          splashColor: ThemeHelper.blueGrey,
+          child: Image.asset(
+            width: width * 0.2,
+            height: height * 0.04,
+            iconLogo,
+          ),
+          onTap: () => context.router.push(const MainScreenRoute()),
+        ),
       ),
       actions: [
         PopupMenuButton<_MenuValues>(

@@ -28,14 +28,13 @@ class ReviewsDialogWidget extends StatelessWidget {
           Stack(
             alignment: Alignment.topLeft,
             clipBehavior: Clip.none,
-            fit: StackFit.loose,
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: CustomPaint(
                   size: Size(
                     context.width * 0.8,
-                    context.height * 0.4,
+                    context.height * 0.5,
                   ),
                   painter: DialogCustomPainter(),
                 ),
@@ -55,7 +54,7 @@ class ReviewsDialogWidget extends StatelessWidget {
               Positioned(
                 top: 20,
                 left: 90,
-                // bottom: 105,
+                bottom: 105,
                 right: 14,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,7 +78,7 @@ class ReviewsDialogWidget extends StatelessWidget {
               Positioned(
                 top: 120,
                 left: 14,
-                // bottom: 14,
+                bottom: 14,
                 right: 14,
                 child: SizedBox(
                   width: context.width * 0.61,
