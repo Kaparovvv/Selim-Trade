@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:selim_trade_app/core/exports/export.dart';
-import 'package:selim_trade_app/feature/main/presentation/local_widgets/reviews_dialog_widget.dart';
-import 'package:selim_trade_app/feature/main/presentation/local_widgets/scroll_button_widget.dart';
+import 'package:selim_trade_app/feature/main/presentation/widgets/reviews_dialog_widget.dart';
+import 'package:selim_trade_app/feature/main/presentation/widgets/scroll_button_widget.dart';
 
 import '../../../../core/custom_painter/reviews_box_custom_painter.dart';
 

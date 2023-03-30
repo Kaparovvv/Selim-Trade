@@ -59,7 +59,7 @@ class CompanyLocationBoxWidgetState extends State<CompanyLocationBoxWidget> {
     );
   }
 
-  Future<void> _doToTheLocation() async {
+  Future<void> doToTheLocation() async {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }

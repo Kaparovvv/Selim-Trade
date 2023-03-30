@@ -161,10 +161,13 @@ class _ServiceScreenState extends State<ServiceScreen> {
               ),
             ),
           ),
-          const SliverPadding(
-            padding: EdgeInsets.only(top: 50),
+          SliverPadding(
+            padding: const EdgeInsets.only(top: 50),
             sliver: SliverToBoxAdapter(
-              child: FooterAndApplication(),
+              child: FooterAndApplication(
+                moveToAboutUs: () {},
+                moveToReviws: () {},
+              ),
             ),
           ),
         ],

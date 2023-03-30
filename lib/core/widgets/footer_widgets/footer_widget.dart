@@ -1,11 +1,20 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:selim_trade_app/core/router/app_router.gr.dart';
 import 'package:selim_trade_app/core/url_launcher/url_launcher.dart';
 import 'package:selim_trade_app/core/widgets/footer_widgets/contacts_company_widget.dart';
 import 'package:selim_trade_app/core/widgets/footer_widgets/mini_widget_compa_loca.dart';
 import '../../exports/export.dart';
 
 class FooterWidget extends StatelessWidget {
-  const FooterWidget({super.key});
+  const FooterWidget({
+    super.key,
+    required this.moveToAboutUs,
+    required this.moveToReviws,
+  });
+
+  final void Function() moveToAboutUs;
+  final void Function() moveToReviws;
 
   @override
   Widget build(BuildContext context) {
@@ -110,22 +119,50 @@ class FooterWidget extends StatelessWidget {
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              textButton(TextHelper.main, () {}),
+                              textButton(
+                                TextHelper.main,
+                                () => context.router.replace(
+                                  const MainScreenRoute(),
+                                ),
+                              ),
                               const SizedBox(height: 4),
-                              textButton(TextHelper.aboutUs, () {}),
+                              textButton(
+                                TextHelper.aboutUs,
+                                () => moveToAboutUs(),
+                              ),
                               const SizedBox(height: 4),
-                              textButton(TextHelper.service, () {}),
+                              textButton(
+                                TextHelper.service,
+                                () => context.router.push(
+                                  ListServicesScreenRoute(
+                                    listOfOffer: const [],
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                           const SizedBox(width: 20),
                           Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              textButton(TextHelper.works, () {}),
+                              textButton(
+                                TextHelper.works,
+                                () => context.router.push(
+                                  OurWorksScreenRoute(listOfWorks: const []),
+                                ),
+                              ),
                               const SizedBox(height: 4),
-                              textButton(TextHelper.reviews, () {}),
+                              textButton(
+                                TextHelper.reviews,
+                                () => moveToReviws(),
+                              ),
                               const SizedBox(height: 4),
-                              textButton(TextHelper.news, () {}),
+                              textButton(
+                                TextHelper.news,
+                                () => context.router.push(
+                                  const NewsFeedScreenRoute(),
+                                ),
+                              ),
                             ],
                           ),
                         ],
@@ -159,12 +196,15 @@ class FooterWidget extends StatelessWidget {
     double height,
     Function() onTap,
   ) {
-    return GestureDetector(
-      onTap: () => onTap(),
-      child: Image.asset(
-        icon,
-        width: width * 0.0861,
-        height: height * 0.0382,
+    return Material(
+      child: InkWell(
+        borderRadius: BorderRadius.circular(5),
+        onTap: () => onTap(),
+        child: Image.asset(
+          icon,
+          width: width * 0.0861,
+          height: height * 0.0382,
+        ),
       ),
     );
   }
