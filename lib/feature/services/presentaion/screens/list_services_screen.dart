@@ -84,10 +84,13 @@ class _ListServicesScreenState extends State<ListServicesScreen> {
               ),
             ),
           ),
-          const SliverPadding(
-            padding: EdgeInsets.only(top: 40),
+          SliverPadding(
+            padding: const EdgeInsets.only(top: 40),
             sliver: SliverToBoxAdapter(
-              child: FooterAndApplication(),
+              child: FooterAndApplication(
+                moveToAboutUs: () {},
+                moveToReviws: () {},
+              ),
             ),
           ),
         ],

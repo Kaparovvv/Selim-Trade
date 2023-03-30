@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:selim_trade_app/core/router/app_router.gr.dart';
 
 import 'package:selim_trade_app/core/widgets/custom_outli_button_widget.dart';
-import 'package:selim_trade_app/feature/main/presentation/local_widgets/scroll_button_widget.dart';
+import 'package:selim_trade_app/feature/main/presentation/widgets/scroll_button_widget.dart';
 
 import '../../../../core/exports/export.dart';
 import '../../../../core/widgets/image_and_text_box_widget.dart';

@@ -99,7 +99,10 @@ class _NewsScreenState extends State<NewsScreen> {
                 ),
               ),
               const SizedBox(height: 65),
-              const FooterAndApplication(),
+              FooterAndApplication(
+                moveToAboutUs: () {},
+                moveToReviws: () {},
+              ),
             ],
           ),
         ),

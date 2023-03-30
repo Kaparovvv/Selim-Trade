@@ -78,10 +78,13 @@ class _OurWorksScreenState extends State<OurWorksScreen> {
               ),
             ),
           ),
-          const SliverPadding(
-            padding: EdgeInsets.only(top: 40),
+          SliverPadding(
+            padding: const EdgeInsets.only(top: 40),
             sliver: SliverToBoxAdapter(
-              child: FooterAndApplication(),
+              child: FooterAndApplication(
+                moveToAboutUs: () {},
+                moveToReviws: () {},
+              ),
             ),
           ),
         ],

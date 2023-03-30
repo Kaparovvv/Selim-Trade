@@ -48,6 +48,7 @@ class _SendingAnApplicationWidgetState
             CustomTextFieldWidget(
               controller: _nameController,
               hinText: TextHelper.name,
+              textCapitalization: TextCapitalization.words,
               validate: (value) =>
                   validatesHelper.titleValidate(value!, TextHelper.name),
             ),
@@ -64,6 +65,7 @@ class _SendingAnApplicationWidgetState
               controller: _messageController,
               hinText: TextHelper.message,
               maxLines: 6,
+              textCapitalization: TextCapitalization.words,
               validate: (value) =>
                   validatesHelper.titleValidate(value!, TextHelper.message),
             ),
@@ -76,7 +78,10 @@ class _SendingAnApplicationWidgetState
                 gradient: const LinearGradient(
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
-                  colors: [ThemeHelper.color105BFB, ThemeHelper.color5061FF],
+                  colors: [
+                    ThemeHelper.color105BFB,
+                    ThemeHelper.color5061FF,
+                  ],
                 ),
               ),
               child: MaterialButton(

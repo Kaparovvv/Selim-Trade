@@ -98,10 +98,13 @@ class _NewsFeedScreenState extends State<NewsFeedScreen> {
               ),
             ),
           ),
-          const SliverPadding(
-            padding: EdgeInsets.only(top: 71),
+          SliverPadding(
+            padding: const EdgeInsets.only(top: 71),
             sliver: SliverToBoxAdapter(
-              child: FooterAndApplication(),
+              child: FooterAndApplication(
+                moveToAboutUs: () {},
+                moveToReviws: () {},
+              ),
             ),
           ),
         ],
