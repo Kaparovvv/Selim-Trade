@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:selim_trade_app/commons/theme_helper.dart';
+import 'package:selim_trade_app/core/commons/theme_helper.dart';
 
 class TextStyleHelper {
   static const TextStyle f25w700 = TextStyle(

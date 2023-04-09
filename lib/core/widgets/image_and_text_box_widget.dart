@@ -68,7 +68,7 @@ class ImageAndTextBoxWidget extends StatelessWidget {
                         horizontal: 10,
                       ),
                       child: Text(
-                        title ?? '',
+                        (title ?? '').toUpperCase(),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 5,
                         style: TextStyleHelper.f16w800,
@@ -81,7 +81,7 @@ class ImageAndTextBoxWidget extends StatelessWidget {
                             vertical: 6,
                           ),
                       child: Text(
-                        title ?? '',
+                        (title ?? '').toUpperCase(),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 5,
                         style: TextStyleHelper.f16w800,

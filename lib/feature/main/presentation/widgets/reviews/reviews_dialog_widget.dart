@@ -1,9 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:selim_trade_app/core/custom_painter/dialog_custom_painter.dart';
 import 'package:selim_trade_app/core/widgets/circle_back_button_widget.dart';
 
-import '../../../../core/exports/export.dart';
+import '../../../../../core/exports/export.dart';
 
 class ReviewsDialogWidget extends StatelessWidget {
   const ReviewsDialogWidget({
@@ -45,7 +44,7 @@ class ReviewsDialogWidget extends StatelessWidget {
                 right: 253,
                 child: SafeArea(
                   child: CachedNetworkImageWidget(
-                    imageUrl: image,
+                    imageUrl: null,
                     width: context.width * 0.25,
                     height: context.height * 0.11,
                     shape: BoxShape.circle,

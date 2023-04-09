@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:selim_trade_app/core/keys/constants_key.dart';
 import 'package:selim_trade_app/core/widgets/footer_widgets/footer_widget.dart';
 import 'package:selim_trade_app/core/widgets/sending_an_applica_widget.dart';
 

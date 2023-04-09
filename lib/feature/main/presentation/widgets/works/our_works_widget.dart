@@ -1,10 +1,9 @@
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:selim_trade_app/core/router/app_router.gr.dart';
 import 'package:selim_trade_app/core/widgets/image_and_text_box_widget.dart';
 
-import '../../../../core/exports/export.dart';
+import '../../../../../core/exports/export.dart';
 
 class OurWorksWidget extends StatefulWidget {
   const OurWorksWidget({super.key});
@@ -98,7 +97,7 @@ class _OurWorksWidgetState extends State<OurWorksWidget> {
             ImageAndTextBoxWidget(
               width: context.width * 0.67,
               height: context.height * 0.2,
-              imageUrl: listOfWorks[index].image,
+              imageUrl: null,
               title: null,
               alignment: AlignmentDirectional.bottomStart,
               boxShadow: const BoxShadow(

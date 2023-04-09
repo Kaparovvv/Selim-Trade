@@ -63,7 +63,7 @@ class _OurWorksScreenState extends State<OurWorksScreen> {
                       ImageAndTextBoxWidget(
                         width: context.width * 0.8889,
                         height: context.height * 0.2463,
-                        imageUrl: listOfWorks[index].image,
+                        imageUrl: null,
                         title: null,
                         alignment: AlignmentDirectional.center,
                         radius: 10,

@@ -15,10 +15,13 @@ import 'package:auto_route/auto_route.dart' as _i7;
 import 'package:flutter/material.dart' as _i8;
 
 import '../../feature/main/presentation/main_screen.dart' as _i1;
+import '../../feature/news/domain/entities/news/news_entity.dart' as _i10;
 import '../../feature/news/presentation/screens/news_feed_screen.dart' as _i4;
 import '../../feature/news/presentation/screens/news_screen.dart' as _i3;
-import '../../feature/our_works/presentation/screens/our_works_screen.dart' as _i5;
-import '../../feature/services/presentaion/screens/list_services_screen.dart' as _i2;
+import '../../feature/our_works/presentation/screens/our_works_screen.dart'
+    as _i5;
+import '../../feature/services/presentaion/screens/list_services_screen.dart'
+    as _i2;
 import '../../feature/services/presentaion/screens/service_screen.dart' as _i6;
 import '../exports/export.dart' as _i9;
 
@@ -50,7 +53,8 @@ class AppRouter extends _i7.RootStackRouter {
         routeData: routeData,
         child: _i3.NewsScreen(
           key: args.key,
-          newsData: args.newsData,
+          news: args.news,
+          newsList: args.newsList,
         ),
       );
     },
@@ -169,13 +173,15 @@ class ListServicesScreenRouteArgs {
 class NewsScreenRoute extends _i7.PageRouteInfo<NewsScreenRouteArgs> {
   NewsScreenRoute({
     _i8.Key? key,
-    required _i9.NewsData newsData,
+    required _i10.NewsEntity news,
+    required List<_i10.NewsEntity> newsList,
   }) : super(
           NewsScreenRoute.name,
           path: 'news',
           args: NewsScreenRouteArgs(
             key: key,
-            newsData: newsData,
+            news: news,
+            newsList: newsList,
           ),
         );
 
@@ -185,16 +191,19 @@ class NewsScreenRoute extends _i7.PageRouteInfo<NewsScreenRouteArgs> {
 class NewsScreenRouteArgs {
   const NewsScreenRouteArgs({
     this.key,
-    required this.newsData,
+    required this.news,
+    required this.newsList,
   });
 
   final _i8.Key? key;
 
-  final _i9.NewsData newsData;
+  final _i10.NewsEntity news;
+
+  final List<_i10.NewsEntity> newsList;
 
   @override
   String toString() {
-    return 'NewsScreenRouteArgs{key: $key, newsData: $newsData}';
+    return 'NewsScreenRouteArgs{key: $key, news: $news, newsList: $newsList}';
   }
 }
 

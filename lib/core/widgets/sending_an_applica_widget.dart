@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:selim_trade_app/core/widgets/custom_textfield_widget.dart';
 
-import '../../commons/validates_helper.dart';
+import '../commons/validates_helper.dart';
 import '../exports/export.dart';
 
 class SendingAnApplicationWidget extends StatefulWidget {

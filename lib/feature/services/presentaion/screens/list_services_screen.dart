@@ -68,7 +68,7 @@ class _ListServicesScreenState extends State<ListServicesScreen> {
                         width: context.width * 0.9139,
                         height: context.height * 0.21,
                         alignment: AlignmentDirectional.bottomStart,
-                        imageUrl: offer.image,
+                        imageUrl: null,
                         title: offer.typeOfGates,
                         radius: 10,
                         onTap: () => context.router.push(
