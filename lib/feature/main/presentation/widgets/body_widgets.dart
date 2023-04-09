@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:selim_trade_app/feature/main/presentation/widgets/about_company_widget.dart';
-import 'package:selim_trade_app/feature/main/presentation/widgets/latest_news_widget.dart';
+import 'package:selim_trade_app/feature/main/presentation/widgets/news/latest_news_widget.dart';
 
 import 'package:selim_trade_app/feature/main/presentation/widgets/our_advantages_widget.dart';
 import 'package:selim_trade_app/feature/main/presentation/widgets/our_service_widget.dart';
-import 'package:selim_trade_app/feature/main/presentation/widgets/our_works_widget.dart';
-import 'package:selim_trade_app/feature/main/presentation/widgets/reviews_widget.dart';
-import 'package:selim_trade_app/feature/main/presentation/widgets/we_offer_widget.dart';
+import 'package:selim_trade_app/feature/main/presentation/widgets/works/our_works_widget.dart';
+import 'package:selim_trade_app/feature/main/presentation/widgets/reviews/reviews_widget.dart';
+import 'package:selim_trade_app/feature/main/presentation/widgets/we_offer/we_offer_widget.dart';
 
 import '../../../../core/exports/export.dart';
 

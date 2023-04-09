@@ -54,7 +54,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
                   CachedNetworkImageWidget(
                     width: context.width,
                     height: double.maxFinite,
-                    imageUrl: offer.image,
+                    imageUrl: null,
                     radius: const BorderRadius.only(
                       bottomRight: Radius.circular(45),
                     ),
@@ -109,7 +109,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
                         height: context.height * 0.2118,
                         isTextWithBackground: false,
                         alignment: AlignmentDirectional.bottomStart,
-                        imageUrl: gates.image,
+                        imageUrl: null,
                         title: gates.gates,
                         radius: 10,
                         onTap: () {},

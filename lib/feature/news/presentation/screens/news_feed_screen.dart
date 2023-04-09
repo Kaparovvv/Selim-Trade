@@ -1,11 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:selim_trade_app/core/router/app_router.gr.dart';
-import 'package:selim_trade_app/core/widgets/custom_outli_button_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:selim_trade_app/feature/news/presentation/bloc/bloc/news_bloc.dart';
 
 import '../../../../core/exports/export.dart';
 import '../../../../core/widgets/footer_and_application_widget.dart';
-import '../../../../core/widgets/image_and_text_box_widget.dart';
+import '../widgets/news_feed_body.dart';
 
 class NewsFeedScreen extends StatefulWidget {
   const NewsFeedScreen({super.key});
@@ -15,11 +14,12 @@ class NewsFeedScreen extends StatefulWidget {
 }
 
 class _NewsFeedScreenState extends State<NewsFeedScreen> {
+  late NewsBloc _newsBloc;
   late ScrollController _scrollController;
-  final ListOfNewsData _newsData = ListOfNewsData();
 
   @override
   void initState() {
+    _newsBloc = BlocProvider.of(context);
     _scrollController = ScrollController();
     super.initState();
   }
@@ -34,80 +34,49 @@ class _NewsFeedScreenState extends State<NewsFeedScreen> {
         IconHelper.blackLogo,
         ThemeHelper.color414141,
       ),
-      body: CustomScrollView(
-        controller: _scrollController,
-        slivers: [
-          SliverPadding(
-            padding: const EdgeInsets.only(top: 25, left: 25, right: 25),
-            sliver: SliverToBoxAdapter(
+      body: RefreshIndicator(
+        color: ThemeHelper.color105BFB,
+        onRefresh: () async => _newsBloc.add(
+          const GetNewsListEvent(pageSize: 6),
+        ),
+        child: BlocConsumer<NewsBloc, NewsState>(
+          bloc: _newsBloc,
+          listener: (context, state) {},
+          builder: (context, state) {
+            if (state is LoadingNewsListState) {}
+            if (state is LoadedNewsListState) {
+              return NewsFeedBodyWidget(
+                scrollController: _scrollController,
+                newsList: state.newsListEntity,
+              );
+            }
+
+            return SingleChildScrollView(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  const SizedBox(height: 25),
                   Text(
                     TextHelper.newsOfCompany.toUpperCase(),
                     style: TextStyleHelper.f16w700,
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 71),
                   const Text(
-                    TextHelper.newsDesc,
+                    TextHelper.thereisNothing,
+                    textAlign: TextAlign.center,
                     style: TextStyleHelper.f14w300,
+                  ),
+                  const SizedBox(height: 71),
+                  FooterAndApplication(
+                    moveToAboutUs: () {},
+                    moveToReviws: () {},
                   ),
                 ],
               ),
-            ),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.only(top: 30, left: 16, right: 16),
-            sliver: SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return Column(
-                    children: [
-                      ImageAndTextBoxWidget(
-                        width: context.width * 0.91,
-                        height: context.height * 0.2759,
-                        imageUrl: _newsData.listNewsData[index].image,
-                        title: _newsData.listNewsData[index].title,
-                        isTextWithBackground: false,
-                        alignment: AlignmentDirectional.center,
-                        margin: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 20,
-                        ),
-                        onTap: () => context.router.push(
-                          NewsScreenRoute(
-                            newsData: _newsData.listNewsData[index],
-                          ),
-                        ),
-                      ),
-                      if (index != (7 - 1)) const SizedBox(height: 30),
-                    ],
-                  );
-                },
-                childCount: listOfWorks.length,
-              ),
-            ),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.only(top: 20, left: 115, right: 115),
-            sliver: SliverToBoxAdapter(
-              child: CustomOutlinedButtonWidget(
-                title: TextHelper.downloadMore.toLowerCase(),
-                textStyle: TextStyleHelper.f14w400,
-                onPressed: () {},
-              ),
-            ),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.only(top: 71),
-            sliver: SliverToBoxAdapter(
-              child: FooterAndApplication(
-                moveToAboutUs: () {},
-                moveToReviws: () {},
-              ),
-            ),
-          ),
-        ],
+            );
+          },
+        ),
       ),
     );
   }

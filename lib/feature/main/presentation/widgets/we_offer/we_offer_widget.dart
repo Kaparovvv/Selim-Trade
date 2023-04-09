@@ -5,8 +5,8 @@ import 'package:selim_trade_app/core/router/app_router.gr.dart';
 import 'package:selim_trade_app/core/widgets/custom_outli_button_widget.dart';
 import 'package:selim_trade_app/feature/main/presentation/widgets/scroll_button_widget.dart';
 
-import '../../../../core/exports/export.dart';
-import '../../../../core/widgets/image_and_text_box_widget.dart';
+import '../../../../../core/exports/export.dart';
+import '../../../../../core/widgets/image_and_text_box_widget.dart';
 
 class WeOfferWidget extends StatefulWidget {
   final List<Offer> listOfOffer;
@@ -61,7 +61,7 @@ class _WeOfferWidgetState extends State<WeOfferWidget> {
                     width: context.width * 0.69,
                     height: context.height * 0.21,
                     alignment: AlignmentDirectional.bottomStart,
-                    imageUrl: offer.image,
+                    imageUrl: null,
                     title: offer.typeOfGates,
                     onTap: () {},
                   ),
