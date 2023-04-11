@@ -115,14 +115,13 @@ class TopPanelWidget {
                 context.router.push(const MainScreenRoute());
                 break;
               case _MenuValues.services:
-                context.router
-                    .push(ListServicesScreenRoute(listOfOffer: const []));
+                context.router.push(const ListServicesScreenRoute());
                 break;
               case _MenuValues.news:
                 context.router.push(const NewsFeedScreenRoute());
                 break;
               case _MenuValues.ourWorks:
-                context.router.push(OurWorksScreenRoute(listOfWorks: const []));
+                context.router.push(const OurWorksScreenRoute());
                 break;
               case _MenuValues.call:
                 UrlLauncher().makePhoneCall(TextHelper.contact1);

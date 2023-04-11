@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:selim_trade_app/core/router/app_router.gr.dart';
+import 'package:selim_trade_app/core/widgets/loading_widget.dart';
 import 'package:selim_trade_app/core/widgets/news_box_widget.dart';
 import 'package:selim_trade_app/core/widgets/custom_outli_button_widget.dart';
 
@@ -22,7 +23,7 @@ class _LatestNewsWidgetState extends State<LatestNewsWidget> {
   @override
   void initState() {
     _newsBloc = BlocProvider.of(context);
-    _newsBloc.add(const GetNewsListEvent(pageSize: 6));
+    _newsBloc.add(const GetNewsListEvent(pageSize: 10));
     super.initState();
   }
 
@@ -43,7 +44,12 @@ class _LatestNewsWidgetState extends State<LatestNewsWidget> {
             bloc: _newsBloc,
             listener: (context, state) {},
             builder: (context, state) {
-              if (state is LoadingNewsListState) {}
+              if (state is LoadingNewsState) {
+                return LoadingWidget(
+                  width: context.width * 0.67,
+                  height: context.height * 0.2,
+                );
+              }
 
               if (state is LoadedNewsListState) {
                 var newsList = state.newsListEntity;
@@ -58,12 +64,9 @@ class _LatestNewsWidgetState extends State<LatestNewsWidget> {
                       height: context.height * 0.2,
                       imageUrl: news.photoUrl,
                       title: news.title,
-                      description: news.description,
+                      // description: news.description,
                       onPressed: () => context.router.push(
-                        NewsScreenRoute(
-                          news: news,
-                          newsList: newsList,
-                        ),
+                        NewsScreenRoute(newsId: news.id!),
                       ),
                     );
                   },

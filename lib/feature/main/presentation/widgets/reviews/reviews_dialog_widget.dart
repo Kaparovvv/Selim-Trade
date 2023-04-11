@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:selim_trade_app/core/custom_painter/dialog_custom_painter.dart';
 import 'package:selim_trade_app/core/widgets/circle_back_button_widget.dart';
+import 'package:selim_trade_app/feature/main/domain/entities/reviews_entity.dart';
 
 import '../../../../../core/exports/export.dart';
 
 class ReviewsDialogWidget extends StatelessWidget {
   const ReviewsDialogWidget({
     super.key,
-    required this.author,
-    required this.image,
-    required this.typeGates,
-    required this.reviewsText,
+    required this.reviews,
   });
 
-  final String? author;
-  final String? image;
-  final String? typeGates;
-  final String? reviewsText;
+  final ReviewsEntity reviews;
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -44,7 +40,7 @@ class ReviewsDialogWidget extends StatelessWidget {
                 right: 253,
                 child: SafeArea(
                   child: CachedNetworkImageWidget(
-                    imageUrl: null,
+                    imageUrl: reviews.photoUrl,
                     width: context.width * 0.25,
                     height: context.height * 0.11,
                     shape: BoxShape.circle,
@@ -60,14 +56,14 @@ class ReviewsDialogWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      author ?? 'unknown',
+                      reviews.name ?? 'unknown',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyleHelper.f16w700,
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      typeGates ?? '',
+                      reviews.gate ?? '',
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyleHelper.f14w500,
@@ -84,7 +80,7 @@ class ReviewsDialogWidget extends StatelessWidget {
                   width: context.width * 0.61,
                   child: SingleChildScrollView(
                     child: Text(
-                      reviewsText ?? '',
+                      reviews.text ?? '',
                       style: TextStyleHelper.f14w500,
                     ),
                   ),

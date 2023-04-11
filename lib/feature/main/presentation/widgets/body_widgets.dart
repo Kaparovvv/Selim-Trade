@@ -32,34 +32,32 @@ class BodyWidgets extends StatelessWidget {
             padding: const EdgeInsets.only(top: 32),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
+              children: const [
+                Padding(
                   padding: EdgeInsets.only(left: 17),
                   child: AboutCompanyWidget(),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 60),
-                  child: WeOfferWidget(
-                    listOfOffer: listOfOffer,
-                  ),
+                  padding: EdgeInsets.only(top: 60),
+                  child: WeOfferWidget(),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(top: 60),
                   child: OurAdvantagesWidget(),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(top: 60),
                   child: LatestNewsWidget(),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(top: 60),
                   child: OurWorksWidget(),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(top: 60),
                   child: OurServiceWidget(),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(top: 60),
                   child: ReviewsWidget(),
                 ),

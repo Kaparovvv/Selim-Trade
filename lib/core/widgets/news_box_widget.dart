@@ -10,7 +10,7 @@ class NewsBoxWidget extends StatefulWidget {
     required this.width,
     required this.height,
     required this.title,
-    required this.description,
+    this.description,
     this.boxShadow,
     required this.onPressed,
   }) : super(key: key);

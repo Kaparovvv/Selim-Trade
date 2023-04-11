@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:selim_trade_app/core/exports/export.dart';
+import 'package:selim_trade_app/feature/main/domain/entities/reviews_entity.dart';
 import 'package:selim_trade_app/feature/main/presentation/widgets/reviews/reviews_dialog_widget.dart';
 
 import '../../../../../core/custom_painter/reviews_box_custom_painter.dart';
@@ -7,7 +8,10 @@ import '../../../../../core/custom_painter/reviews_box_custom_painter.dart';
 class ReviewsBoxWidget extends StatelessWidget {
   const ReviewsBoxWidget({
     super.key,
+    required this.reviews,
   });
+
+  final ReviewsEntity reviews;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +38,7 @@ class ReviewsBoxWidget extends StatelessWidget {
                 bottom: 105,
                 child: SafeArea(
                   child: CachedNetworkImageWidget(
-                    imageUrl: null,
+                    imageUrl: reviews.photoUrl,
                     width: context.width * 0.155,
                     height: context.height * 0.068,
                     shape: BoxShape.circle,
@@ -50,14 +54,14 @@ class ReviewsBoxWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'unknown',
+                      reviews.name ?? 'unknown',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyleHelper.f13w600,
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'unknown',
+                      reviews.gate ?? 'unknown',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyleHelper.f11w300,
@@ -73,7 +77,7 @@ class ReviewsBoxWidget extends StatelessWidget {
                 child: SizedBox(
                   width: context.width * 0.61,
                   child: Text(
-                    'sdlkjcnlsd lsdjcn',
+                    reviews.text ?? '',
                     maxLines: 5,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyleHelper.f12w400,
@@ -108,11 +112,8 @@ class ReviewsBoxWidget extends StatelessWidget {
                   ),
                   onTap: () => showDialog(
                     context: context,
-                    builder: (context) => const ReviewsDialogWidget(
-                      author: 'listOfReviews[index]',
-                      image: null,
-                      typeGates: 'listOfReviews',
-                      reviewsText: 'listOfReviews',
+                    builder: (context) => ReviewsDialogWidget(
+                      reviews: reviews,
                     ),
                   ),
                 ),

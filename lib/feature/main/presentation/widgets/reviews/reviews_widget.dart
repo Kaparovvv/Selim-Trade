@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:selim_trade_app/core/exports/export.dart';
+import 'package:selim_trade_app/core/widgets/loading_widget.dart';
 import 'package:selim_trade_app/feature/main/presentation/widgets/reviews/reviews_box_widget.dart';
 import 'package:selim_trade_app/feature/main/presentation/widgets/scroll_button_widget.dart';
 
@@ -31,31 +32,6 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, String>> listOfReviews = [
-      {
-        "image": 'https://www.peoples.ru/character/movie/loki/loki_2.jpg',
-        "author": 'Улан Султанов',
-        "typeOfGates": 'ворота атоматические',
-        "reviewsText":
-            'Ворота стоят уже более двух лет. За это время с ними не было никаких проблем. Спасибо, Selim Trade!',
-      },
-      {
-        "image": 'https://i.ytimg.com/vi/nIL1ZPP4Af4/maxresdefault.jpg',
-        "author": 'Улан Султанов',
-        "typeOfGates": 'ворота атоматические',
-        "reviewsText":
-            'Ворота стоят уже более двух лет. За это время с ними не было никаких проблем. Спасибо, Selim Trade!',
-      },
-      {
-        "image":
-            'https://www.meme-arsenal.com/memes/b191faa34f0b45cb1b047242410c7ce2.jpg',
-        "author": 'Улан Султанов',
-        "typeOfGates": 'ворота атоматические',
-        "reviewsText":
-            'Ворота стоят уже более двух лет. За это время с ними не было никаких проблем. Спасибо, Selim Trade!sdkjcn sdjcns sdjcns, nksjdncks skdjcnksjd skjdcnskjd skjdcnskjd skdjcnskjdnc skdjcnkjsd skdjcnkjsdn',
-      },
-    ];
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -71,44 +47,37 @@ class _ReviewsWidgetState extends State<ReviewsWidget> {
             bloc: _reviewsBloc,
             listener: (context, state) {},
             builder: (context, state) {
-              // if (state is LoadingReviewsListState) {
-              //   return const CircularProgressIndicator();
-              // }
+              if (state is LoadingReviewsListState) {
+                return LoadingWidget(
+                  width: context.width * 0.66,
+                  height: context.height * 0.18,
+                );
+              }
               if (state is LoadedReviewsListState) {
+                var reviewsList = state.reviewsListEntity;
                 return PageView.builder(
                   controller: _pageController,
-                  itemCount: listOfReviews.length,
+                  itemCount: reviewsList.length,
                   physics: const BouncingScrollPhysics(),
                   onPageChanged: (index) {
-                    var reviews = state.reviewsListEntity[index].photoUrl;
                     setState(() {
                       _pageChanged = index;
                     });
                   },
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 11),
-                    child: Center(
-                      child: ReviewsBoxWidget(),
-                    ),
-                  ),
+                  itemBuilder: (context, index) {
+                    var reviews = reviewsList[index];
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 11),
+                      child: Center(
+                        child: ReviewsBoxWidget(
+                          reviews: reviews,
+                        ),
+                      ),
+                    );
+                  },
                 );
               }
-              return PageView.builder(
-                controller: _pageController,
-                itemCount: listOfReviews.length,
-                physics: const BouncingScrollPhysics(),
-                onPageChanged: (index) {
-                  setState(() {
-                    _pageChanged = index;
-                  });
-                },
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 11),
-                  child: Center(
-                    child: const ReviewsBoxWidget(),
-                  ),
-                ),
-              );
+              return const SizedBox();
             },
           ),
         ),
