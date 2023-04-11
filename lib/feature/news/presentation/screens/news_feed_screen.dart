@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:selim_trade_app/core/widgets/shimmer_loading_widget.dart';
 import 'package:selim_trade_app/feature/news/presentation/bloc/bloc/news_bloc.dart';
 
 import '../../../../core/exports/export.dart';
@@ -20,6 +21,7 @@ class _NewsFeedScreenState extends State<NewsFeedScreen> {
   @override
   void initState() {
     _newsBloc = BlocProvider.of(context);
+    _newsBloc.add(const GetNewsListEvent(pageSize: 6));
     _scrollController = ScrollController();
     super.initState();
   }
@@ -43,7 +45,9 @@ class _NewsFeedScreenState extends State<NewsFeedScreen> {
           bloc: _newsBloc,
           listener: (context, state) {},
           builder: (context, state) {
-            if (state is LoadingNewsListState) {}
+            if (state is LoadingNewsState) {
+              return const ShimmerLoadingWidget();
+            }
             if (state is LoadedNewsListState) {
               return NewsFeedBodyWidget(
                 scrollController: _scrollController,

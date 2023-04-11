@@ -134,9 +134,7 @@ class FooterWidget extends StatelessWidget {
                               textButton(
                                 TextHelper.service,
                                 () => context.router.push(
-                                  ListServicesScreenRoute(
-                                    listOfOffer: const [],
-                                  ),
+                                  const ListServicesScreenRoute(),
                                 ),
                               ),
                             ],
@@ -148,7 +146,7 @@ class FooterWidget extends StatelessWidget {
                               textButton(
                                 TextHelper.works,
                                 () => context.router.push(
-                                  OurWorksScreenRoute(listOfWorks: const []),
+                                  const OurWorksScreenRoute(),
                                 ),
                               ),
                               const SizedBox(height: 4),

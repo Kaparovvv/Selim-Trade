@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../exports/export.dart';
 
@@ -38,16 +39,20 @@ class CachedNetworkImageWidget extends StatelessWidget {
             ),
           ),
         ),
-        // placeholder: (context, url) => Center(
-        //   child: Container(
-        //     width: double.infinity,
-        //     height: double.infinity,
-        //     decoration: BoxDecoration(
-        //       color: ThemeHelper.blueGrey,
-        //       shape: shape ?? BoxShape.rectangle,
-        //     ),
-        //   ),
-        // ),
+        placeholder: (context, url) => Center(
+          child: Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[200]!,
+            child: Container(
+              width: width,
+              height: height,
+              decoration: BoxDecoration(
+                color: ThemeHelper.blueGrey,
+                shape: shape ?? BoxShape.rectangle,
+              ),
+            ),
+          ),
+        ),
         errorWidget: (context, url, error) => Image.asset(
           ImageHelper.imageNotFound,
           fit: BoxFit.cover,

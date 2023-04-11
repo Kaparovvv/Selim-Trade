@@ -1,22 +1,26 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:selim_trade_app/core/router/app_router.gr.dart';
 
 import 'package:selim_trade_app/core/widgets/custom_outli_button_widget.dart';
+import 'package:selim_trade_app/core/widgets/loading_widget.dart';
 import 'package:selim_trade_app/feature/main/presentation/widgets/scroll_button_widget.dart';
+import 'package:selim_trade_app/feature/services/presentaion/blocs/bloc/gates_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/exports/export.dart';
 import '../../../../../core/widgets/image_and_text_box_widget.dart';
 
 class WeOfferWidget extends StatefulWidget {
-  final List<Offer> listOfOffer;
-  const WeOfferWidget({super.key, required this.listOfOffer});
+  const WeOfferWidget({super.key});
 
   @override
   State<WeOfferWidget> createState() => _WeOfferWidgetState();
 }
 
 class _WeOfferWidgetState extends State<WeOfferWidget> {
+  late GatesBloc _gatesBloc;
   final PageController _pageController = PageController(
     initialPage: 0,
     viewportFraction: 0.7,
@@ -27,6 +31,8 @@ class _WeOfferWidgetState extends State<WeOfferWidget> {
   void initState() {
     super.initState();
     _pageController.addListener(() {});
+    _gatesBloc = BlocProvider.of(context);
+    _gatesBloc.add(const GetGateListEvent(pageSize: 10));
   }
 
   @override
@@ -43,30 +49,20 @@ class _WeOfferWidgetState extends State<WeOfferWidget> {
         SizedBox(
           width: context.width,
           height: context.height * 0.21,
-          child: PageView.builder(
-            controller: _pageController,
-            itemCount: widget.listOfOffer.length,
-            physics: const BouncingScrollPhysics(),
-            onPageChanged: (index) {
-              setState(() {
-                _pageChanged = index;
-              });
-            },
-            itemBuilder: (context, index) {
-              var offer = widget.listOfOffer[index];
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Center(
-                  child: ImageAndTextBoxWidget(
-                    width: context.width * 0.69,
-                    height: context.height * 0.21,
-                    alignment: AlignmentDirectional.bottomStart,
-                    imageUrl: null,
-                    title: offer.typeOfGates,
-                    onTap: () {},
-                  ),
-                ),
-              );
+          child: BlocConsumer<GatesBloc, GatesState>(
+            bloc: _gatesBloc,
+            listener: (context, state) {},
+            builder: (context, state) {
+              if (state is LoadingGateState) {
+                return LoadingWidget(
+                  width: context.width * 0.69,
+                  height: context.height * 0.21,
+                );
+              }
+              if (state is LoadedGateListState) {
+                return _weOffersList(state);
+              }
+              return const SizedBox();
             },
           ),
         ),
@@ -88,9 +84,7 @@ class _WeOfferWidgetState extends State<WeOfferWidget> {
               CustomOutlinedButtonWidget(
                 title: TextHelper.viewAll,
                 onPressed: () => context.router.push(
-                  ListServicesScreenRoute(
-                    listOfOffer: widget.listOfOffer,
-                  ),
+                  const ListServicesScreenRoute(),
                 ),
               ),
               ScrollButtonWidget(
@@ -108,6 +102,37 @@ class _WeOfferWidgetState extends State<WeOfferWidget> {
           ),
         ),
       ],
+    );
+  }
+
+  PageView _weOffersList(LoadedGateListState state) {
+    return PageView.builder(
+      controller: _pageController,
+      itemCount: state.gateListEntity.length,
+      physics: const BouncingScrollPhysics(),
+      onPageChanged: (index) {
+        setState(() {
+          _pageChanged = index;
+        });
+      },
+      itemBuilder: (context, index) {
+        var gate = state.gateListEntity[index];
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Center(
+            child: ImageAndTextBoxWidget(
+              width: context.width * 0.69,
+              height: context.height * 0.21,
+              alignment: AlignmentDirectional.bottomStart,
+              imageUrl: gate.backgroundUrl,
+              title: gate.name,
+              onTap: () => context.router.push(
+                ServiceScreenRoute(gateId: gate.id!),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 

@@ -1,31 +1,29 @@
-import '../../../data/models/news_model.dart';
+import 'package:equatable/equatable.dart';
 
-class NewsEntity {
+import '../../../data/models/news/news_model.dart';
+
+// ignore: must_be_immutable
+class NewsEntity extends Equatable {
   NewsEntity({
     this.id,
-    this.photoUrl,
     this.title,
+    this.newsPhotos,
+    this.photoUrl,
     this.description,
-    this.createdDate,
-    this.createdByNews,
-    this.updatedByListNews,
   });
 
   int? id;
-  String? photoUrl;
   String? title;
+  List<NewsPhoto>? newsPhotos;
+  String? photoUrl;
   String? description;
-  DateTime? createdDate;
-  CreatedByNews? createdByNews;
-  List<UpdatedByListNew>? updatedByListNews;
 
-  newsConvert(NewsModel newsModel) => NewsEntity(
-        id: newsModel.id,
-        photoUrl: newsModel.photoUrl,
-        title: newsModel.title,
-        description: newsModel.description,
-        createdDate: newsModel.createdDate,
-        createdByNews: newsModel.createdByNews,
-        updatedByListNews: newsModel.updatedByListNews,
-      );
+  @override
+  List<Object?> get props => [
+        id,
+        title,
+        newsPhotos,
+        photoUrl,
+        description,
+      ];
 }

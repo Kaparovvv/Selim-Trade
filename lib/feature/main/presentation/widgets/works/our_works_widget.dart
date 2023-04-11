@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:selim_trade_app/core/router/app_router.gr.dart';
 import 'package:selim_trade_app/core/widgets/image_and_text_box_widget.dart';
+import 'package:selim_trade_app/feature/our_works/presentation/bloc/works_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/exports/export.dart';
 
@@ -14,12 +17,15 @@ class OurWorksWidget extends StatefulWidget {
 
 class _OurWorksWidgetState extends State<OurWorksWidget> {
   final PageController _pageController = PageController(viewportFraction: 0.7);
+  late WorksBloc _worksBloc;
 
   var _currPageValue = 0.0;
 
   @override
   void initState() {
     super.initState();
+    _worksBloc = BlocProvider.of(context);
+    _worksBloc.add(const GetWorksListEvent(pageSize: 10));
     _pageController.addListener(() {
       setState(() {
         _currPageValue = _pageController.page!;
@@ -40,19 +46,46 @@ class _OurWorksWidgetState extends State<OurWorksWidget> {
         SizedBox(
           width: context.width,
           height: context.height * 0.23,
-          child: PageView.builder(
-            itemCount: listOfWorks.length,
-            controller: _pageController,
-            physics: const BouncingScrollPhysics(),
-            itemBuilder: (context, index) {
-              return Center(
-                child: buildPageItem(
-                  index,
-                  () => context.router.push(
-                    OurWorksScreenRoute(listOfWorks: listOfWorks),
+          child: BlocConsumer<WorksBloc, WorksState>(
+            bloc: _worksBloc,
+            listener: (context, state) {},
+            builder: (context, state) {
+              if (state is LoadingWorksState) {
+                return Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  child: ListView.separated(
+                    itemCount: 3,
+                    itemBuilder: (context, index) => Container(
+                      width: context.width * 0.67,
+                      height: context.height * 0.2,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(width: 15),
                   ),
-                ),
-              );
+                );
+              }
+              if (state is LoadedWorksState) {
+                var works = state.worksList;
+                return PageView.builder(
+                  itemCount: works.length,
+                  controller: _pageController,
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return Center(
+                      child: buildPageItem(
+                        index,
+                        () => context.router.push(const OurWorksScreenRoute()),
+                        imageUrl: works[index].photoUrl ?? '',
+                      ),
+                    );
+                  },
+                );
+              }
+              return const SizedBox();
             },
           ),
         ),
@@ -63,7 +96,7 @@ class _OurWorksWidgetState extends State<OurWorksWidget> {
   final double _scaleFactor = .8;
   final double _height = 230.0;
 
-  buildPageItem(int index, Function() onTap) {
+  buildPageItem(int index, Function() onTap, {required String imageUrl}) {
     Matrix4 matrix = Matrix4.identity();
 
     if (index == _currPageValue.floor()) {
@@ -97,7 +130,7 @@ class _OurWorksWidgetState extends State<OurWorksWidget> {
             ImageAndTextBoxWidget(
               width: context.width * 0.67,
               height: context.height * 0.2,
-              imageUrl: null,
+              imageUrl: imageUrl,
               title: null,
               alignment: AlignmentDirectional.bottomStart,
               boxShadow: const BoxShadow(
@@ -105,9 +138,7 @@ class _OurWorksWidgetState extends State<OurWorksWidget> {
                 offset: Offset(0, 0),
                 blurRadius: 4.48,
               ),
-              onTap: () => context.router.push(
-                OurWorksScreenRoute(listOfWorks: listOfWorks),
-              ),
+              onTap: () => onTap(),
             ),
           ],
         ),
