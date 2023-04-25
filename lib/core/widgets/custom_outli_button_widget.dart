@@ -6,6 +6,7 @@ class CustomOutlinedButtonWidget extends StatelessWidget {
   final String title;
   final Function() onPressed;
   final double height;
+  final double? widthPadding;
   final TextStyle textStyle;
   final double radius;
   const CustomOutlinedButtonWidget({
@@ -15,6 +16,7 @@ class CustomOutlinedButtonWidget extends StatelessWidget {
     this.height = 14,
     this.textStyle = TextStyleHelper.f12w400,
     this.radius = 10,
+    this.widthPadding,
   }) : super(key: key);
 
   @override
@@ -24,7 +26,7 @@ class CustomOutlinedButtonWidget extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         padding: EdgeInsets.symmetric(
           vertical: height,
-          horizontal: 10,
+          horizontal: widthPadding ?? 10,
         ),
         elevation: 0,
         side: const BorderSide(

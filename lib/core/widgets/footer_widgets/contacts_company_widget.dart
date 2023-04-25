@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../exports/export.dart';
+import '../../url_launcher/url_launcher.dart';
 
 class ContactsCompanyWidget extends StatelessWidget {
   const ContactsCompanyWidget({super.key});
@@ -29,11 +30,20 @@ class ContactsCompanyWidget extends StatelessWidget {
             const SizedBox(height: 7.5),
             customText(TextHelper.phone.toUpperCase()),
             const SizedBox(height: 2.5),
-            customText(TextHelper.contact1),
+            textButton(
+              TextHelper.contact1,
+              () => UrlLauncher().makePhoneCall(TextHelper.contact1),
+            ),
             const SizedBox(height: 2.5),
-            customText(TextHelper.contact2),
+            textButton(
+              TextHelper.contact2,
+              () => UrlLauncher().makePhoneCall(TextHelper.contact2),
+            ),
             const SizedBox(height: 2.5),
-            customText(TextHelper.contact3),
+            textButton(
+              TextHelper.contact3,
+              () => UrlLauncher().makePhoneCall(TextHelper.contact3),
+            ),
           ],
         ),
       ],
@@ -44,6 +54,18 @@ class ContactsCompanyWidget extends StatelessWidget {
     return Text(
       text,
       style: TextStyleHelper.f12w500,
+    );
+  }
+
+  Material textButton(String text, Function() onPressed) {
+    return Material(
+      type: MaterialType.transparency,
+      child: InkWell(
+        splashColor: ThemeHelper.color001645,
+        autofocus: true,
+        child: customText(text),
+        onTap: () => onPressed(),
+      ),
     );
   }
 }

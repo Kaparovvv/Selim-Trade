@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:selim_trade_app/commons/coordinates_company.dart';
+import 'package:selim_trade_app/core/commons/coordinates_company.dart';
 import 'package:selim_trade_app/core/exports/export.dart';
 
 class CompanyLocationBoxWidget extends StatefulWidget {
@@ -59,7 +59,7 @@ class CompanyLocationBoxWidgetState extends State<CompanyLocationBoxWidget> {
     );
   }
 
-  Future<void> _doToTheLocation() async {
+  Future<void> doToTheLocation() async {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }

@@ -24,10 +24,17 @@ class TopPanelWidget {
       automaticallyImplyLeading: false,
       backgroundColor: Colors.transparent,
       elevation: 0,
-      title: Image.asset(
-        width: width * 0.2,
-        height: height * 0.04,
-        iconLogo,
+      title: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          splashColor: ThemeHelper.blueGrey,
+          child: Image.asset(
+            width: width * 0.2,
+            height: height * 0.04,
+            iconLogo,
+          ),
+          onTap: () => context.router.push(const MainScreenRoute()),
+        ),
       ),
       actions: [
         PopupMenuButton<_MenuValues>(
@@ -108,13 +115,13 @@ class TopPanelWidget {
                 context.router.push(const MainScreenRoute());
                 break;
               case _MenuValues.services:
-                context.router.push(ListServicesScreenRoute(listOfOffer: []));
+                context.router.push(const ListServicesScreenRoute());
                 break;
               case _MenuValues.news:
                 context.router.push(const NewsFeedScreenRoute());
                 break;
               case _MenuValues.ourWorks:
-                context.router.push(OurWorksScreenRoute(listOfWorks: []));
+                context.router.push(const OurWorksScreenRoute());
                 break;
               case _MenuValues.call:
                 UrlLauncher().makePhoneCall(TextHelper.contact1);

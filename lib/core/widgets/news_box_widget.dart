@@ -10,7 +10,7 @@ class NewsBoxWidget extends StatefulWidget {
     required this.width,
     required this.height,
     required this.title,
-    required this.description,
+    this.description,
     this.boxShadow,
     required this.onPressed,
   }) : super(key: key);
@@ -28,6 +28,7 @@ class NewsBoxWidget extends StatefulWidget {
 
 class _NewsBoxWidgetState extends State<NewsBoxWidget> {
   bool isLongPress = false;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -35,15 +36,19 @@ class _NewsBoxWidgetState extends State<NewsBoxWidget> {
       height: widget.height,
       child: GestureDetector(
         onTap: () {
-          setState(() {
-            isLongPress = true;
-          });
+          if (mounted) {
+            setState(() {
+              isLongPress = true;
+            });
+          }
         },
         onTapUp: (details) {
           Future.delayed(const Duration(seconds: 3), () {
-            setState(() {
-              isLongPress = false;
-            });
+            if (mounted) {
+              setState(() {
+                isLongPress = false;
+              });
+            }
           });
         },
         child: Stack(
