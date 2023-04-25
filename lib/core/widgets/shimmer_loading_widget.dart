@@ -20,42 +20,34 @@ class ShimmerLoadingWidget extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Container(
-              width: context.width,
-              height: context.height * 0.03,
-              decoration: BoxDecoration(
-                color: ThemeHelper.white,
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
+            _container(context, context.width, context.height * 0.03),
             const SizedBox(height: 20),
-            Container(
-              width: context.width,
-              height: context.height * 0.1,
-              decoration: BoxDecoration(
-                color: ThemeHelper.white,
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
+            _container(context, context.width, context.height * 0.1),
             const SizedBox(height: 20),
-            Expanded(
-              child: ListView.separated(
-                itemCount: 5,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) => Container(
-                  width: context.width * 0.8889,
-                  height: context.height * 0.2463,
-                  decoration: BoxDecoration(
-                    color: ThemeHelper.white,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                separatorBuilder: (context, index) =>
-                    const SizedBox(height: 20),
+            ListView.separated(
+              shrinkWrap: true,
+              itemCount: 3,
+              // physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) => _container(
+                context,
+                context.width * 0.8889,
+                context.height * 0.2463,
               ),
+              separatorBuilder: (context, index) => const SizedBox(height: 20),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Container _container(BuildContext context, double width, double height) {
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: ThemeHelper.white,
+        borderRadius: BorderRadius.circular(12),
       ),
     );
   }

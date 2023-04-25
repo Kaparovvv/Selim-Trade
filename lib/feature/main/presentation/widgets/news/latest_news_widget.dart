@@ -6,6 +6,7 @@ import 'package:selim_trade_app/core/router/app_router.gr.dart';
 import 'package:selim_trade_app/core/widgets/loading_widget.dart';
 import 'package:selim_trade_app/core/widgets/news_box_widget.dart';
 import 'package:selim_trade_app/core/widgets/custom_outli_button_widget.dart';
+import 'package:selim_trade_app/feature/news/domain/entities/news_list/news_list_entity.dart';
 
 import '../../../../../core/exports/export.dart';
 import '../../../../news/presentation/bloc/bloc/news_bloc.dart';
@@ -19,6 +20,7 @@ class LatestNewsWidget extends StatefulWidget {
 
 class _LatestNewsWidgetState extends State<LatestNewsWidget> {
   late NewsBloc _newsBloc;
+  late List<NewsListEntity> _newsList;
 
   @override
   void initState() {
@@ -44,15 +46,9 @@ class _LatestNewsWidgetState extends State<LatestNewsWidget> {
             bloc: _newsBloc,
             listener: (context, state) {},
             builder: (context, state) {
-              if (state is LoadingNewsState) {
-                return LoadingWidget(
-                  width: context.width * 0.67,
-                  height: context.height * 0.2,
-                );
-              }
-
               if (state is LoadedNewsListState) {
                 var newsList = state.newsListEntity;
+                _newsList = newsList;
                 return ListView.separated(
                   scrollDirection: Axis.horizontal,
                   physics: const BouncingScrollPhysics(),
@@ -64,7 +60,7 @@ class _LatestNewsWidgetState extends State<LatestNewsWidget> {
                       height: context.height * 0.2,
                       imageUrl: news.photoUrl,
                       title: news.title,
-                      // description: news.description,
+                      description: news.description,
                       onPressed: () => context.router.push(
                         NewsScreenRoute(newsId: news.id!),
                       ),
@@ -75,14 +71,18 @@ class _LatestNewsWidgetState extends State<LatestNewsWidget> {
                   itemCount: newsList.length,
                 );
               }
-              return const SizedBox();
+              return const Center(
+                child: Text(TextHelper.thereisNothing),
+              );
             },
           ),
         ),
         const SizedBox(height: 15),
         CustomOutlinedButtonWidget(
           title: TextHelper.allNews,
-          onPressed: () => context.router.push(const NewsFeedScreenRoute()),
+          onPressed: () => context.router.push(
+            const NewsFeedScreenRoute(),
+          ),
         ),
       ],
     );

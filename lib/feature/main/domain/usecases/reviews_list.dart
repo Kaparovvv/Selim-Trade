@@ -19,7 +19,7 @@ class ReviewsList extends UseCase<List<ReviewsEntity>, DefaultParams> {
   ) async {
     return await reviewsListRepo.getReviewsList(
       params.pageNo ?? '',
-      params.pageSize ?? 5,
+      params.pageSize ?? 10,
       params.sortBy ?? '',
     );
   }

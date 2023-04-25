@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/exports/export.dart';
 import '../../../core/widgets/footer_and_application_widget.dart';
+import '../../../utils/injection.dart';
+import '../../news/presentation/bloc/bloc/news_bloc.dart';
+import '../../order/presentation/bloc/order_bloc.dart';
+import '../../our_works/presentation/bloc/works_bloc.dart';
+import '../../services/presentaion/blocs/bloc/gates_bloc.dart';
+import 'blocs/bloc/reviews_bloc.dart';
 import 'widgets/body_widgets.dart';
 
 class MainScreen extends StatefulWidget {

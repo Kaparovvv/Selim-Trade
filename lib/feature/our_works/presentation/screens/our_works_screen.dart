@@ -3,10 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:selim_trade_app/core/exports/export.dart';
 import 'package:selim_trade_app/core/widgets/image_and_text_box_widget.dart';
 import 'package:selim_trade_app/feature/our_works/presentation/bloc/works_bloc.dart';
-import 'package:shimmer/shimmer.dart';
-
 import '../../../../core/widgets/footer_and_application_widget.dart';
-import '../../../../core/widgets/loading_widget.dart';
 import '../../../../core/widgets/shimmer_loading_widget.dart';
 
 class OurWorksScreen extends StatefulWidget {

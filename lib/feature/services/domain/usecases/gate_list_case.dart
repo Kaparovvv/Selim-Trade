@@ -14,7 +14,8 @@ class GateListCase extends UseCase<List<GatesListEntity>, DefaultParams> {
 
   @override
   Future<Either<Failure, List<GatesListEntity>>> call(
-      DefaultParams params) async {
+    DefaultParams params,
+  ) async {
     return await gatesListRepository.getGatesList(
       params.pageNo ?? '',
       params.pageSize ?? 3,

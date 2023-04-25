@@ -13,6 +13,7 @@ class CustomTextFieldWidget extends StatelessWidget {
     this.validate,
     this.inputFormatters,
     this.textCapitalization,
+    required this.focusNode,
   }) : super(key: key);
 
   final FormFieldValidator<String>? validate;
@@ -22,10 +23,12 @@ class CustomTextFieldWidget extends StatelessWidget {
   final String hinText;
   final List<TextInputFormatter>? inputFormatters;
   final TextCapitalization? textCapitalization;
+  final FocusNode focusNode;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      focusNode: focusNode,
       controller: controller,
       maxLines: maxLines ?? 1,
       keyboardType: keyboardType ?? TextInputType.text,

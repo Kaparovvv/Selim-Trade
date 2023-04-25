@@ -67,4 +67,7 @@ class TextHelper {
   static const String ourWorksDesc =
       'Здесь мы собрали наши лучшие проекты, чтобы вы могли вдохновиться идеями для собственного проекта. Вы найдёте проект по душе и нраву, который захотите воплотить в жизнь.';
   static const String thereisNothing = 'Здесь пока ничего нет';
+  static const String orderIsSuccess = 'Ваша заявка успешно отправлена';
+  static const String ourSpecialists = 'Наши специалисты скоро с вами свяжутся';
+  static const String well = 'Хорошо';
 }

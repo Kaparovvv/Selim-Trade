@@ -8,8 +8,10 @@ class ValidatesHelper {
   }
 
   phoneValidate(String value) {
-    if (value.isEmpty) {
-      return 'Введите ваш номер что-бы мы с вами связались';
+    if (value.isNotEmpty) {
+      return null;
+    } else {
+      return 'Введите ваш номер';
     }
   }
 }

@@ -15,7 +15,7 @@ class LoadingWidget extends StatelessWidget {
       baseColor: Colors.grey[300]!,
       highlightColor: Colors.grey[200]!,
       child: ListView.separated(
-        itemCount: 3,
+        itemCount: 4,
         itemBuilder: (context, index) => Container(
           width: width,
           height: height,

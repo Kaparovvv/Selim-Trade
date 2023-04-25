@@ -39,8 +39,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       emit(const NewsState.loading());
       final result = await newsCase(NewsParams(newsId: event.newsId));
       result.fold(
-        (failure) => NewsState.error(message: failure.serverException()),
-        (news) => NewsState.loadedNews(newsEntity: news),
+        (failure) => emit(NewsState.error(message: failure.serverException())),
+        (news) => emit(NewsState.loadedNews(newsEntity: news)),
       );
     });
   }

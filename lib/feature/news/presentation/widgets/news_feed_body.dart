@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:selim_trade_app/feature/news/domain/entities/news_list/news_list_entity.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/exports/export.dart';
 import '../../../../core/router/app_router.gr.dart';
@@ -14,10 +13,12 @@ class NewsFeedBodyWidget extends StatelessWidget {
     super.key,
     required ScrollController scrollController,
     required this.newsList,
+    required this.onPressed,
   }) : _scrollController = scrollController;
 
   final ScrollController _scrollController;
   final List<NewsListEntity> newsList;
+  final Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +82,7 @@ class NewsFeedBodyWidget extends StatelessWidget {
             child: CustomOutlinedButtonWidget(
               title: TextHelper.downloadMore.toLowerCase(),
               textStyle: TextStyleHelper.f14w400,
-              onPressed: () {},
+              onPressed: () => onPressed(),
             ),
           ),
         ),

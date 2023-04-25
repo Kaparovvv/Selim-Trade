@@ -4,7 +4,6 @@ import 'package:selim_trade_app/core/widgets/shimmer_loading_widget.dart';
 import 'package:selim_trade_app/feature/news/presentation/bloc/bloc/news_bloc.dart';
 
 import '../../../../core/exports/export.dart';
-import '../../../../core/widgets/footer_and_application_widget.dart';
 import '../widgets/news_feed_body.dart';
 
 class NewsFeedScreen extends StatefulWidget {
@@ -21,7 +20,6 @@ class _NewsFeedScreenState extends State<NewsFeedScreen> {
   @override
   void initState() {
     _newsBloc = BlocProvider.of(context);
-    _newsBloc.add(const GetNewsListEvent(pageSize: 6));
     _scrollController = ScrollController();
     super.initState();
   }
@@ -52,33 +50,13 @@ class _NewsFeedScreenState extends State<NewsFeedScreen> {
               return NewsFeedBodyWidget(
                 scrollController: _scrollController,
                 newsList: state.newsListEntity,
+                onPressed: () => _newsBloc.add(
+                  GetNewsListEvent(pageSize: state.newsListEntity.length * 2),
+                ),
               );
             }
 
-            return SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const SizedBox(height: 25),
-                  Text(
-                    TextHelper.newsOfCompany.toUpperCase(),
-                    style: TextStyleHelper.f16w700,
-                  ),
-                  const SizedBox(height: 71),
-                  const Text(
-                    TextHelper.thereisNothing,
-                    textAlign: TextAlign.center,
-                    style: TextStyleHelper.f14w300,
-                  ),
-                  const SizedBox(height: 71),
-                  FooterAndApplication(
-                    moveToAboutUs: () {},
-                    moveToReviws: () {},
-                  ),
-                ],
-              ),
-            );
+            return const SizedBox();
           },
         ),
       ),

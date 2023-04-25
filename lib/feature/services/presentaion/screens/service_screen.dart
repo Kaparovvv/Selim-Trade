@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:selim_trade_app/core/exports/export.dart';
 import 'package:selim_trade_app/core/widgets/image_and_text_box_widget.dart';
 import 'package:selim_trade_app/feature/services/presentaion/blocs/bloc/gates_bloc.dart';
+import 'package:selim_trade_app/feature/services/presentaion/widgets/service_loading_widget.dart';
 
 import '../../../../core/widgets/footer_and_application_widget.dart';
 
@@ -42,11 +43,13 @@ class _ServiceScreenState extends State<ServiceScreen> {
         bloc: _gatesBloc,
         listener: (context, state) {},
         builder: (context, state) {
-          if (state is LoadingGateState) {}
+          if (state is LoadingGateState) {
+            return const ServiceLoadingWidget();
+          }
           if (state is LoadedGateState) {
             var gate = state.gateEntity;
-            var gateListLength = state.gateEntity.gateList!.length;
-            var advantagesLength = state.gateEntity.advantageGateList?.length;
+            var gateListLength = state.gateEntity.gateList?.length;
+            var advantagesList = state.gateEntity.advantageGateList;
             return CustomScrollView(
               controller: _scrollController,
               physics: const BouncingScrollPhysics(),
@@ -127,10 +130,14 @@ class _ServiceScreenState extends State<ServiceScreen> {
                               imageUrl: gateList?.photoUrl,
                               title: gateList?.name ?? '',
                               radius: 10,
-                              onTap: () {},
+                              onTap: () {
+                                log(advantagesList.toString());
+                                log(widget.gateId.toString());
+                              },
                             ),
-                            if (index != (gateListLength - 1))
-                              const SizedBox(height: 30),
+                            if (gateListLength != null)
+                              if (index != (gateListLength - 1))
+                                const SizedBox(height: 30),
                           ],
                         );
                       },
@@ -153,26 +160,28 @@ class _ServiceScreenState extends State<ServiceScreen> {
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
-                        var advantages = gate.advantageGateList?[index];
+                        var advantages = gate.advantageGateList![index];
+                        log(advantages.title.toString());
                         return Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              (advantages?.title ?? '').toUpperCase(),
+                              (advantages.title ?? '').toUpperCase(),
                               textAlign: TextAlign.center,
                               style: TextStyleHelper.f20w600,
                             ),
                             const SizedBox(height: 7),
                             Text(
-                              (advantages?.description ?? '').toLowerCase(),
+                              (advantages.description ?? '').toLowerCase(),
                               style: TextStyleHelper.f14w300,
                             ),
-                            if (index != ((advantagesLength ?? 0) - 1))
+                            if (index !=
+                                ((gate.advantageGateList?.length ?? 0) - 1))
                               const SizedBox(height: 40),
                           ],
                         );
                       },
-                      childCount: advantagesLength,
+                      childCount: gate.advantageGateList?.length ?? 0,
                     ),
                   ),
                 ),

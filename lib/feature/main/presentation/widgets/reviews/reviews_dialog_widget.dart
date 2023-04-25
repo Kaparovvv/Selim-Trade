@@ -37,7 +37,7 @@ class ReviewsDialogWidget extends StatelessWidget {
               ),
               Positioned(
                 bottom: 356,
-                right: 253,
+                right: 246,
                 child: SafeArea(
                   child: CachedNetworkImageWidget(
                     imageUrl: reviews.photoUrl,

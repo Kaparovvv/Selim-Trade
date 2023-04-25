@@ -7,7 +7,6 @@ import 'package:selim_trade_app/core/widgets/custom_outli_button_widget.dart';
 import 'package:selim_trade_app/core/widgets/loading_widget.dart';
 import 'package:selim_trade_app/feature/main/presentation/widgets/scroll_button_widget.dart';
 import 'package:selim_trade_app/feature/services/presentaion/blocs/bloc/gates_bloc.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/exports/export.dart';
 import '../../../../../core/widgets/image_and_text_box_widget.dart';
@@ -126,9 +125,7 @@ class _WeOfferWidgetState extends State<WeOfferWidget> {
               alignment: AlignmentDirectional.bottomStart,
               imageUrl: gate.backgroundUrl,
               title: gate.name,
-              onTap: () => context.router.push(
-                ServiceScreenRoute(gateId: gate.id!),
-              ),
+              onTap: () {},
             ),
           ),
         );

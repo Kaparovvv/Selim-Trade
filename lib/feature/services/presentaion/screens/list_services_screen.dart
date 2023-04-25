@@ -7,6 +7,8 @@ import 'package:selim_trade_app/core/widgets/footer_and_application_widget.dart'
 import 'package:selim_trade_app/core/widgets/image_and_text_box_widget.dart';
 import 'package:selim_trade_app/feature/services/presentaion/blocs/bloc/gates_bloc.dart';
 
+import '../../../../core/widgets/shimmer_loading_widget.dart';
+
 class ListServicesScreen extends StatefulWidget {
   const ListServicesScreen({super.key});
 
@@ -36,80 +38,88 @@ class _ListServicesScreenState extends State<ListServicesScreen> {
         IconHelper.blackLogo,
         ThemeHelper.color414141,
       ),
-      body: BlocConsumer<GatesBloc, GatesState>(
-        bloc: _gatesBloc,
-        listener: (context, state) {},
-        builder: (context, state) {
-          if (state is LoadingGateState) {}
-          if (state is LoadedGateListState) {
-            var gateListLength = state.gateListEntity.length;
-            return CustomScrollView(
-              controller: _scrollController,
-              physics: const BouncingScrollPhysics(),
-              slivers: [
-                SliverPadding(
-                  padding: const EdgeInsets.only(top: 25, left: 10, right: 10),
-                  sliver: SliverToBoxAdapter(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          TextHelper.ourServices.toUpperCase(),
-                          style: TextStyleHelper.f16w700,
-                        ),
-                        const SizedBox(height: 10),
-                        const Text(
-                          TextHelper.employeeExperience,
-                          textAlign: TextAlign.center,
-                          style: TextStyleHelper.f14w300,
-                        ),
-                      ],
+      body: RefreshIndicator(
+        onRefresh: () async => _gatesBloc.add(
+          const GetGateListEvent(pageSize: 100),
+        ),
+        child: BlocConsumer<GatesBloc, GatesState>(
+          bloc: _gatesBloc,
+          listener: (context, state) {},
+          builder: (context, state) {
+            if (state is LoadingGateState) {
+              return const ShimmerLoadingWidget();
+            }
+            if (state is LoadedGateListState) {
+              var gateListLength = state.gateListEntity.length;
+              return CustomScrollView(
+                controller: _scrollController,
+                slivers: [
+                  SliverPadding(
+                    padding:
+                        const EdgeInsets.only(top: 25, left: 10, right: 10),
+                    sliver: SliverToBoxAdapter(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            TextHelper.ourServices.toUpperCase(),
+                            style: TextStyleHelper.f16w700,
+                          ),
+                          const SizedBox(height: 10),
+                          const Text(
+                            TextHelper.employeeExperience,
+                            textAlign: TextAlign.center,
+                            style: TextStyleHelper.f14w300,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                SliverPadding(
-                  padding: const EdgeInsets.only(top: 40, left: 15, right: 15),
-                  sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
-                        var gate = state.gateListEntity[index];
-                        return Column(
-                          children: [
-                            ImageAndTextBoxWidget(
-                              width: context.width * 0.9139,
-                              height: context.height * 0.21,
-                              alignment: AlignmentDirectional.bottomStart,
-                              imageUrl: gate.backgroundUrl,
-                              title: gate.name,
-                              radius: 10,
-                              onTap: () => context.router.push(
-                                ServiceScreenRoute(gateId: gate.id!),
+                  SliverPadding(
+                    padding:
+                        const EdgeInsets.only(top: 40, left: 15, right: 15),
+                    sliver: SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (BuildContext context, int index) {
+                          var gate = state.gateListEntity[index];
+                          return Column(
+                            children: [
+                              ImageAndTextBoxWidget(
+                                width: context.width * 0.9139,
+                                height: context.height * 0.21,
+                                alignment: AlignmentDirectional.bottomStart,
+                                imageUrl: gate.backgroundUrl,
+                                title: gate.name,
+                                radius: 10,
+                                onTap: () => context.router.push(
+                                  ServiceScreenRoute(gateId: gate.id!),
+                                ),
                               ),
-                            ),
-                            if (index != (gateListLength - 1))
-                              const SizedBox(height: 30),
-                          ],
-                        );
-                      },
-                      childCount: gateListLength,
+                              if (index != (gateListLength - 1))
+                                const SizedBox(height: 30),
+                            ],
+                          );
+                        },
+                        childCount: gateListLength,
+                      ),
                     ),
                   ),
-                ),
-                SliverPadding(
-                  padding: const EdgeInsets.only(top: 40),
-                  sliver: SliverToBoxAdapter(
-                    child: FooterAndApplication(
-                      moveToAboutUs: () {},
-                      moveToReviws: () {},
+                  SliverPadding(
+                    padding: const EdgeInsets.only(top: 40),
+                    sliver: SliverToBoxAdapter(
+                      child: FooterAndApplication(
+                        moveToAboutUs: () {},
+                        moveToReviws: () {},
+                      ),
                     ),
                   ),
-                ),
-              ],
-            );
-          }
+                ],
+              );
+            }
 
-          return const SizedBox();
-        },
+            return const SizedBox();
+          },
+        ),
       ),
     );
   }

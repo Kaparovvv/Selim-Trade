@@ -9,6 +9,7 @@ class NewsListModel with _$NewsListModel {
     int? id,
     String? title,
     String? photoUrl,
+    String? description,
   }) = _NewsListModel;
 
   factory NewsListModel.fromJson(Map<String, dynamic> json) =>

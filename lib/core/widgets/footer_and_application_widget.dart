@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:selim_trade_app/core/widgets/footer_widgets/footer_widget.dart';
-import 'package:selim_trade_app/core/widgets/sending_an_applica_widget.dart';
+import 'package:selim_trade_app/feature/order/presentation/widgets/sending_an_applica_widget.dart';
 
 class FooterAndApplication extends StatelessWidget {
   const FooterAndApplication({

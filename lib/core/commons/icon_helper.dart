@@ -19,4 +19,9 @@ class IconHelper {
   static const String readMore = 'assets/icons/read_more.png';
   static const String blueLogo = 'assets/icons/blue_logo.png';
   static const String blackLogo = 'assets/icons/logo_black.png';
+  static const String russia = 'assets/icons/russia.png';
+  static const String kyrgyzstan = 'assets/icons/kyrgyzstan.png';
+  static const String kazakhstan = 'assets/icons/kazakhstan.png';
+  static const String done = 'assets/icons/done.png';
+  static const String error = 'assets/icons/error.png';
 }

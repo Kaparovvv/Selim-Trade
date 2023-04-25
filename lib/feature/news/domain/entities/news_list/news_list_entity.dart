@@ -6,12 +6,14 @@ class NewsListEntity extends Equatable {
     this.id,
     this.title,
     this.photoUrl,
+    this.description,
   });
 
   int? id;
   String? title;
   String? photoUrl;
+  String? description;
 
   @override
-  List<Object?> get props => [id, title, photoUrl];
+  List<Object?> get props => [id, title, photoUrl, description];
 }

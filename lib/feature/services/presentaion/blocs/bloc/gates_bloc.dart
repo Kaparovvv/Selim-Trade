@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -23,9 +25,11 @@ class GatesBloc extends Bloc<GatesEvent, GatesState> {
       emit(const GatesState.loading());
       final result = await gateCase(GateParams(gateId: event.gateId));
       result.fold(
-        (failure) => emit(GatesState.error(message: failure.toString())),
-        (gate) => emit(GatesState.loadedGate(gateEntity: gate)),
-      );
+          (failure) => emit(GatesState.error(message: failure.toString())),
+          (gate) {
+        emit(GatesState.loadedGate(gateEntity: gate));
+        log(gate.advantageGateList!.length.toString());
+      });
     });
 
     on<GetGateListEvent>((event, emit) async {

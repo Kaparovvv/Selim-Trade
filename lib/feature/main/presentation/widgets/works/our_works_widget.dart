@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:selim_trade_app/core/router/app_router.gr.dart';
 import 'package:selim_trade_app/core/widgets/image_and_text_box_widget.dart';
 import 'package:selim_trade_app/feature/our_works/presentation/bloc/works_bloc.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/exports/export.dart';
 
@@ -50,24 +49,24 @@ class _OurWorksWidgetState extends State<OurWorksWidget> {
             bloc: _worksBloc,
             listener: (context, state) {},
             builder: (context, state) {
-              if (state is LoadingWorksState) {
-                return Shimmer.fromColors(
-                  baseColor: Colors.grey[300]!,
-                  highlightColor: Colors.grey[100]!,
-                  child: ListView.separated(
-                    itemCount: 3,
-                    itemBuilder: (context, index) => Container(
-                      width: context.width * 0.67,
-                      height: context.height * 0.2,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(width: 15),
-                  ),
-                );
-              }
+              // if (state is LoadingWorksState) {
+              //   return Shimmer.fromColors(
+              //     baseColor: Colors.grey[300]!,
+              //     highlightColor: Colors.grey[100]!,
+              //     child: ListView.separated(
+              //       itemCount: 3,
+              //       itemBuilder: (context, index) => Container(
+              //         width: context.width * 0.67,
+              //         height: context.height * 0.2,
+              //         decoration: BoxDecoration(
+              //           borderRadius: BorderRadius.circular(12),
+              //         ),
+              //       ),
+              //       separatorBuilder: (context, index) =>
+              //           const SizedBox(width: 15),
+              //     ),
+              //   );
+              // }
               if (state is LoadedWorksState) {
                 var works = state.worksList;
                 return PageView.builder(
@@ -96,7 +95,8 @@ class _OurWorksWidgetState extends State<OurWorksWidget> {
   final double _scaleFactor = .8;
   final double _height = 230.0;
 
-  buildPageItem(int index, Function() onTap, {required String imageUrl}) {
+  Transform buildPageItem(int index, Function() onTap,
+      {required String imageUrl}) {
     Matrix4 matrix = Matrix4.identity();
 
     if (index == _currPageValue.floor()) {
@@ -133,9 +133,9 @@ class _OurWorksWidgetState extends State<OurWorksWidget> {
               imageUrl: imageUrl,
               title: null,
               alignment: AlignmentDirectional.bottomStart,
-              boxShadow: const BoxShadow(
-                color: ThemeHelper.color105BFB,
-                offset: Offset(0, 0),
+              boxShadow: BoxShadow(
+                color: ThemeHelper.color105BFB.withOpacity(0.3),
+                offset: const Offset(0, 0),
                 blurRadius: 4.48,
               ),
               onTap: () => onTap(),

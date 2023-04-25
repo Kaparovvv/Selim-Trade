@@ -39,17 +39,16 @@ class CachedNetworkImageWidget extends StatelessWidget {
             ),
           ),
         ),
-        placeholder: (context, url) => Center(
-          child: Shimmer.fromColors(
-            baseColor: Colors.grey[300]!,
-            highlightColor: Colors.grey[200]!,
-            child: Container(
-              width: width,
-              height: height,
-              decoration: BoxDecoration(
-                color: ThemeHelper.blueGrey,
-                shape: shape ?? BoxShape.rectangle,
-              ),
+        placeholder: (context, url) => Shimmer.fromColors(
+          baseColor: Colors.grey[300]!,
+          highlightColor: Colors.grey[200]!,
+          child: Container(
+            width: width,
+            height: height,
+            decoration: BoxDecoration(
+              color: ThemeHelper.white,
+              borderRadius: radius,
+              shape: shape ?? BoxShape.rectangle,
             ),
           ),
         ),

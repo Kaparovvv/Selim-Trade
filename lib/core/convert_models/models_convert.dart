@@ -2,6 +2,8 @@ import 'package:selim_trade_app/feature/main/data/models/reviews/reviews_model.d
 import 'package:selim_trade_app/feature/main/domain/entities/reviews_entity.dart';
 import 'package:selim_trade_app/feature/news/data/models/news_list/news_list_model.dart';
 import 'package:selim_trade_app/feature/news/domain/entities/news_list/news_list_entity.dart';
+import 'package:selim_trade_app/feature/order/data/models/order_model.dart';
+import 'package:selim_trade_app/feature/order/domain/entities/order_entity.dart';
 import 'package:selim_trade_app/feature/our_works/data/models/works_model.dart';
 import 'package:selim_trade_app/feature/our_works/domain/entities/works_entity.dart';
 import 'package:selim_trade_app/feature/services/data/models/gates_list/gates_list_model.dart';
@@ -25,6 +27,7 @@ NewsListEntity newsListModelToEntity(NewsListModel newsListModel) =>
       id: newsListModel.id,
       title: newsListModel.title,
       photoUrl: newsListModel.photoUrl,
+      description: newsListModel.description,
     );
 
 ReviewsEntity reviewsModelToEntity(ReviewsModel reviewsModel) => ReviewsEntity(
@@ -55,4 +58,11 @@ WorksEntity worksModelToEntity(WorksModel worksModel) => WorksEntity(
       id: worksModel.id,
       photoUrl: worksModel.photoUrl,
       createdDate: worksModel.createdDate,
+    );
+
+OrderEntity orderModelToEntity(OrderModel orderModel) => OrderEntity(
+      id: orderModel.id,
+      name: orderModel.name,
+      phoneNumber: orderModel.phoneNumber,
+      message: orderModel.message,
     );

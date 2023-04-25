@@ -23,6 +23,7 @@ mixin _$NewsListModel {
   int? get id => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get photoUrl => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,7 @@ abstract class $NewsListModelCopyWith<$Res> {
           NewsListModel value, $Res Function(NewsListModel) then) =
       _$NewsListModelCopyWithImpl<$Res, NewsListModel>;
   @useResult
-  $Res call({int? id, String? title, String? photoUrl});
+  $Res call({int? id, String? title, String? photoUrl, String? description});
 }
 
 /// @nodoc
@@ -55,6 +56,7 @@ class _$NewsListModelCopyWithImpl<$Res, $Val extends NewsListModel>
     Object? id = freezed,
     Object? title = freezed,
     Object? photoUrl = freezed,
+    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -69,6 +71,10 @@ class _$NewsListModelCopyWithImpl<$Res, $Val extends NewsListModel>
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -81,7 +87,7 @@ abstract class _$$_NewsListModelCopyWith<$Res>
       __$$_NewsListModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? title, String? photoUrl});
+  $Res call({int? id, String? title, String? photoUrl, String? description});
 }
 
 /// @nodoc
@@ -98,6 +104,7 @@ class __$$_NewsListModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? title = freezed,
     Object? photoUrl = freezed,
+    Object? description = freezed,
   }) {
     return _then(_$_NewsListModel(
       id: freezed == id
@@ -112,6 +119,10 @@ class __$$_NewsListModelCopyWithImpl<$Res>
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -119,7 +130,8 @@ class __$$_NewsListModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_NewsListModel implements _NewsListModel {
-  const _$_NewsListModel({this.id, this.title, this.photoUrl});
+  const _$_NewsListModel(
+      {this.id, this.title, this.photoUrl, this.description});
 
   factory _$_NewsListModel.fromJson(Map<String, dynamic> json) =>
       _$$_NewsListModelFromJson(json);
@@ -130,10 +142,12 @@ class _$_NewsListModel implements _NewsListModel {
   final String? title;
   @override
   final String? photoUrl;
+  @override
+  final String? description;
 
   @override
   String toString() {
-    return 'NewsListModel(id: $id, title: $title, photoUrl: $photoUrl)';
+    return 'NewsListModel(id: $id, title: $title, photoUrl: $photoUrl, description: $description)';
   }
 
   @override
@@ -144,12 +158,15 @@ class _$_NewsListModel implements _NewsListModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.photoUrl, photoUrl) ||
-                other.photoUrl == photoUrl));
+                other.photoUrl == photoUrl) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, photoUrl);
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, photoUrl, description);
 
   @JsonKey(ignore: true)
   @override
@@ -169,7 +186,8 @@ abstract class _NewsListModel implements NewsListModel {
   const factory _NewsListModel(
       {final int? id,
       final String? title,
-      final String? photoUrl}) = _$_NewsListModel;
+      final String? photoUrl,
+      final String? description}) = _$_NewsListModel;
 
   factory _NewsListModel.fromJson(Map<String, dynamic> json) =
       _$_NewsListModel.fromJson;
@@ -180,6 +198,8 @@ abstract class _NewsListModel implements NewsListModel {
   String? get title;
   @override
   String? get photoUrl;
+  @override
+  String? get description;
   @override
   @JsonKey(ignore: true)
   _$$_NewsListModelCopyWith<_$_NewsListModel> get copyWith =>
